@@ -5,17 +5,6 @@ xs_weight:
     xs: self.dataset.xs
     nr_incl: self.dataset.get_aux('nr_incl', 1)
 
-pileup_veto:
-  name: PileupVeto
-  path: modules.xsweight
-  
-qcd_reweight:
-  name: QCDWeight
-  path: L1DS.Modules.QCDWeightCalc
-  parameters:
-    year: self.config.year
-    isMC: self.dataset.process.isMC
-
 dijet_selection:
   name: DijetSelection
   path: modules.dijet_selection

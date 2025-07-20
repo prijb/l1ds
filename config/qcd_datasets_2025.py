@@ -1,0 +1,82 @@
+from analysis_tools import Dataset, Process, ObjectCollection
+from plotting_tools import Label
+
+class Config():
+    def add_qcd_processes(self):
+        processes = [
+            Process("minbias", Label("MinBias"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd", Label("QCD"), color=(255, 153, 0)),
+            Process("qcd_15to20", Label("QCD (15-20)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_20to30", Label("QCD (20-30)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_30to50", Label("QCD (30-50)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_50to80", Label("QCD (50-80)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_80to120", Label("QCD (80-120)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_120to170", Label("QCD (120-170)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_170to300", Label("QCD (170-300)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_300to470", Label("QCD (300-470)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_470to600", Label("QCD (470-600)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_600to800", Label("QCD (600-800)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_800to1000", Label("QCD (800-1000)"), color=(255, 153, 0), parent_process="qcd"),
+            Process("qcd_1000to1500", Label("QCD (1000-1500)"), color=(255, 153, 0), parent_process="qcd"),
+        ]
+
+        return ObjectCollection(processes)
+
+    def add_qcd_datasets(self):
+        datasets = [
+            Dataset("qcd_30to50",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-30to50_TuneCP5_13p6TeV_pythia8/Winter25/250702_162819/0000",
+                process=self.processes.get("qcd_30to50"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=112600000.0,
+                nr_incl=3995512),
+            Dataset("qcd_50to80",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-50to80_TuneCP5_13p6TeV_pythia8/Winter25/250702_162851/0000",
+                process=self.processes.get("qcd_50to80"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=16690000.0,
+                nr_incl=19971690),
+            Dataset("qcd_80to120",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-80to120_TuneCP5_13p6TeV_pythia8/Winter25/250702_162920/0000",
+                process=self.processes.get("qcd_80to120"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=2506000.0,
+                nr_incl=997032),
+            Dataset("qcd_120to170",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-120to170_TuneCP5_13p6TeV_pythia8/Winter25/250702_162950/0000",
+                process=self.processes.get("qcd_120to170"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=440400.0,
+                nr_incl=1497789),
+            Dataset("qcd_170to300",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-170to300_TuneCP5_13p6TeV_pythia8/Winter25/250702_163016/0000",
+                process=self.processes.get("qcd_170to300"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=113000.0,
+                nr_incl=998538),
+            Dataset("qcd_300to470",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-300to470_TuneCP5_13p6TeV_pythia8/Winter25/250702_163048/0000",
+                process=self.processes.get("qcd_300to470"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=7572.0,
+                nr_incl=996440),
+            Dataset("qcd_470to600",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-470to600_TuneCP5_13p6TeV_pythia8/Winter25/250702_163119/0000",
+                process=self.processes.get("qcd_470to600"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=622.4,
+                nr_incl=995704),
+            Dataset("qcd_600to800",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-600to800_TuneCP5_13p6TeV_pythia8/Winter25/250702_163148/0000",
+                process=self.processes.get("qcd_600to800"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=178.8,
+                nr_incl=998588),
+            Dataset("qcd_800to1000",
+                folder="/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/QCD_Bin-Pt-800to1000_TuneCP5_13p6TeV_pythia8/Winter25/250702_163214/0000",
+                process=self.processes.get("qcd_800to1000"),
+                prefix="gfe02.grid.hep.ph.ic.ac.uk",
+                xs=30.54,
+                nr_incl=999304)
+        ]
+        return ObjectCollection(datasets)

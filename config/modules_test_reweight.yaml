@@ -15,9 +15,3 @@ qcd_reweight:
   parameters:
     year: self.config.year
     isMC: self.dataset.process.isMC
-
-dijet_selection:
-  name: DijetSelection
-  path: modules.dijet_selection
-  parameters:
-    year: self.config.year

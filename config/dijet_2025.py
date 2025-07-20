@@ -5,11 +5,10 @@ from plotting_tools import Label
 from collections import OrderedDict
 
 from cmt.config.base_config import Config as cmt_config
-from config.qcd_datasets_v2 import Config as qcd_config
-from config.ttbar_datasets import Config as ttbar_config
+from config.qcd_datasets_2025 import Config as qcd_config
 from cmt.base_tasks.base import Task
 
-class Config(qcd_config, ttbar_config, cmt_config):
+class Config(qcd_config, cmt_config):
     def add_categories(self, **kwargs):
         categories = [
             Category("base", "base", selection="nJet > -1"),
@@ -22,7 +21,6 @@ class Config(qcd_config, ttbar_config, cmt_config):
     
     def add_processes(self):
         qcd_processes = super(Config, self).add_qcd_processes()
-        ttbar_processes = super(Config, self).add_ttbar_processes()
         processes = [
             Process("data", Label("Data"), color=(0, 0, 0), isMC=False),
             Process("zprime", Label("Z'"), color=(0, 0, 255), isMC=True)
@@ -41,12 +39,11 @@ class Config(qcd_config, ttbar_config, cmt_config):
         # adding reweighed processes
         processes = ObjectCollection(processes)
 
-        return ObjectCollection(processes) + qcd_processes + ttbar_processes, process_group_names, process_training_names
+        return ObjectCollection(processes) + qcd_processes, process_group_names, process_training_names
     
     def add_datasets(self):
         self.tree_name = "scNtuplizer/Events"
         qcd_datasets = super(Config, self).add_qcd_datasets()
-        ttbar_datasets = super(Config, self).add_ttbar_datasets()
         datasets = [
             Dataset("DataDijet",
                 folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/L1ScoutingSelection/run383996_dijet/240903_120147/0000/",
@@ -80,7 +77,7 @@ class Config(qcd_config, ttbar_config, cmt_config):
             )
         ]
 
-        return ObjectCollection(datasets) + qcd_datasets + ttbar_datasets
+        return ObjectCollection(datasets) + qcd_datasets
     
     def add_features(self):
         from config.features_dijet import features
@@ -90,11 +87,9 @@ class Config(qcd_config, ttbar_config, cmt_config):
         weights = DotDict()
         weights.default = "1"
 
-        #weights.total_events_weights = ["genWeight"]
-        weights.total_events_weights = ["1"]
+        weights.total_events_weights = ["genWeight"]
 
-        #weights.base = ["genWeight"]
-        weights.base = ["1"]
+        weights.base = ["genWeight"]
 
         for category in self.categories:
             weights[category.name] = weights.base
@@ -173,6 +168,6 @@ class Config(qcd_config, ttbar_config, cmt_config):
         return systematics
 
 
-config = Config("dijet_2024", year=2024, ecm=13.6, lumi_pb=0.446)
+config = Config("dijet_2025", year=2025, ecm=13.6, lumi_pb=0.446)
     
 

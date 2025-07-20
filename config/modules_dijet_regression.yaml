@@ -1,0 +1,12 @@
+jet_regression:
+  name: L1DSBDTJet
+  path: L1DS.Modules.BDTJetRegression
+  parameters:
+    year: self.config.year
+    isMC: self.dataset.process.isMC
+
+dijet_selection:
+  name: RegressedInclusiveDijetSelection
+  path: modules.dijet_selection
+  parameters:
+    year: self.config.year
