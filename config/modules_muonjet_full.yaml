@@ -18,3 +18,10 @@ jet_pt_reshuffle:
   parameters:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
+
+muonjet_skim:
+  name: MuonJetScaleResolution
+  path: modules.jet_pt_systematics_skim
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC

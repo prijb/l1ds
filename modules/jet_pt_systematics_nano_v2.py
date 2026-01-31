@@ -18,18 +18,18 @@ class JetPtScaleProducer():
 
         if self.isMC:
             print("\nSample: MC")
-            filename = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_scale_mc.json"
+            filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_mc.json"
         else:
             print("\nSample: Data")
             if "2024" in self.runPeriod:
                 print("Year: 2024")
-                filename = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_scale_data_2024.json" 
+                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_data_2024.json" 
             elif "2025" in self.runPeriod:
                 print("Year: 2025")
-                filename = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_scale_data_2025.json"
+                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_data_2025.json"
             else:
                 print("No year specified, falling back to 2025")
-                filename = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_scale_data_2025.json"
+                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_data_2025.json"
 
 
         print(f"Loading scale corrections from {filename}") 
@@ -88,22 +88,22 @@ class JetPtResolutionProducer():
         self.runPeriod = kwargs.pop("runPeriod")
         self.isMC = kwargs.pop("isMC")
 
-        filename_ref = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_mc.json"
+        filename_ref = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_mc.json"
         filename_sf = "data/dummy_sf.json"
         filename_smear = "data/dummy_smear.json"
 
         if "2024" in self.runPeriod:
             print("Year: 2024")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2024.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2024.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2024.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2024.json"
         elif "2025" in self.runPeriod:
             print("Year: 2025")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2025.json"
         else:
             print("No year specified, falling back to 2025")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2025.json"
 
         if self.isMC:
             print(f"Loading resolution corrections for year: {self.runPeriod}")
@@ -225,25 +225,26 @@ class JetPtResolutionAltProducer():
         self.runPeriod = kwargs.pop("runPeriod")
         self.isMC = kwargs.pop("isMC")
 
-        filename_ref = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_mc.json"
+        filename_ref = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_mc.json"
         filename_sf = "data/dummy_sf.json"
         filename_smear = "data/dummy_smear.json"
 
         if "2024" in self.runPeriod:
             print("Year: 2024")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2024.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2024_norand.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2024.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2024_norand.json"
         elif "2025" in self.runPeriod:
             print("Year: 2025")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
         else:
             print("No year specified, falling back to 2025")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
 
         if self.isMC:
             print(f"Loading resolution corrections for year: {self.runPeriod}")
+            print(f"Generating smearing random factor in script")
             
             if "/libCorrectionsWrapper.so" not in ROOT.gSystem.GetLibraries():
                 ROOT.gInterpreter.Load("libCorrectionsWrapper.so")
@@ -485,7 +486,12 @@ class JetPtReshuffleScaleResolutionProducer():
         # Get the starting order
         df = df.Redefine("L1Jet_pt_order", "Reverse(Argsort(L1Jet_pt))")
 
-        # Get the order of the scale corrected jets
+        # Get the order of the scale corrected jet before smearing
+        df = df.Define("L1Jet_pt_scale_corr_order", "Reverse(Argsort(L1Jet_pt_scale_corr))")
+        df = df.Define("L1Jet_pt_scale_corr_up_order", "Reverse(Argsort(L1Jet_pt_scale_corr_up))")
+        df = df.Define("L1Jet_pt_scale_corr_down_order", "Reverse(Argsort(L1Jet_pt_scale_corr_down))")
+
+        # Get the order of the scale corrected jets after smearing
         df = df.Define("L1Jet_pt_scale_corr_resolution_smear_order", "Reverse(Argsort(L1Jet_pt_scale_corr_resolution_smear))")
         df = df.Define("L1Jet_pt_scale_corr_up_resolution_smear_order", "Reverse(Argsort(L1Jet_pt_scale_corr_up_resolution_smear))")
         df = df.Define("L1Jet_pt_scale_corr_down_resolution_smear_order", "Reverse(Argsort(L1Jet_pt_scale_corr_down_resolution_smear))")
@@ -494,6 +500,19 @@ class JetPtReshuffleScaleResolutionProducer():
 
         # Get the order difference wrt to the starting order
         df = df.Define("L1Jet_pt_scale_corr_resolution_smear_order_shift", "get_order_shift(L1Jet_pt_order, L1Jet_pt_scale_corr_resolution_smear_order)")
+
+        # Reorder wrt previous scale 
+        df = df.Define("L1Jet_eta_scale_corr", "Take(L1Jet_eta, L1Jet_pt_scale_corr_order)")
+        df = df.Define("L1Jet_phi_scale_corr", "Take(L1Jet_phi, L1Jet_pt_scale_corr_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr", "Take(L1Jet_pt_scale_corr, L1Jet_pt_scale_corr_order)")
+        # Up
+        df = df.Define("L1Jet_eta_scale_corr_up", "Take(L1Jet_eta, L1Jet_pt_scale_corr_up_order)")
+        df = df.Define("L1Jet_phi_scale_corr_up", "Take(L1Jet_phi, L1Jet_pt_scale_corr_up_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_up", "Take(L1Jet_pt_scale_corr_up, L1Jet_pt_scale_corr_up_order)")
+        # Down
+        df = df.Define("L1Jet_eta_scale_corr_down", "Take(L1Jet_eta, L1Jet_pt_scale_corr_down_order)")
+        df = df.Define("L1Jet_phi_scale_corr_down", "Take(L1Jet_phi, L1Jet_pt_scale_corr_down_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_down", "Take(L1Jet_pt_scale_corr_down, L1Jet_pt_scale_corr_down_order)")
 
         # Reorder the jets according to the scale corrected pT
         df = df.Define("L1Jet_eta_scale_corr_resolution_smear", "Take(L1Jet_eta, L1Jet_pt_scale_corr_resolution_smear_order)")
@@ -515,14 +534,15 @@ class JetPtReshuffleScaleResolutionProducer():
         df = df.Define("L1Jet_eta_scale_corr_resolution_smear_down", "Take(L1Jet_eta, L1Jet_pt_scale_corr_resolution_smear_down_order)")
         df = df.Define("L1Jet_phi_scale_corr_resolution_smear_down", "Take(L1Jet_phi, L1Jet_pt_scale_corr_resolution_smear_down_order)")
         df = df.Redefine("L1Jet_pt_scale_corr_resolution_smear_down", "Take(L1Jet_pt_scale_corr_resolution_smear_down, L1Jet_pt_scale_corr_resolution_smear_down_order)")
-
-        branches_nominal = ["L1Jet_pt_order", "L1Jet_pt_scale_corr_resolution_smear_order", "L1Jet_pt_scale_corr_resolution_smear_order_shift", "L1Jet_pt_scale_corr_resolution_smear", "L1Jet_eta_scale_corr_resolution_smear", "L1Jet_phi_scale_corr_resolution_smear"]
+        
+        branches_base = ["L1Jet_pt_order", "L1Jet_eta_scale_corr", "L1Jet_phi_scale_corr", "L1Jet_pt_scale_corr", "L1Jet_eta_scale_corr_up", "L1Jet_phi_scale_corr_up", "L1Jet_pt_scale_corr_up","L1Jet_eta_scale_corr_down", "L1Jet_phi_scale_corr_down", "L1Jet_pt_scale_corr_down"]
+        branches_nominal = ["L1Jet_pt_scale_corr_resolution_smear_order", "L1Jet_pt_scale_corr_resolution_smear_order_shift", "L1Jet_pt_scale_corr_resolution_smear", "L1Jet_eta_scale_corr_resolution_smear", "L1Jet_phi_scale_corr_resolution_smear"]
         branches_scale_up_smear_nominal = ["L1Jet_pt_scale_corr_up_resolution_smear", "L1Jet_eta_scale_corr_up_resolution_smear", "L1Jet_phi_scale_corr_up_resolution_smear"]
         branches_scale_down_smear_nominal = ["L1Jet_pt_scale_corr_down_resolution_smear", "L1Jet_eta_scale_corr_down_resolution_smear", "L1Jet_phi_scale_corr_down_resolution_smear"]
         branches_scale_nominal_smear_up = ["L1Jet_pt_scale_corr_resolution_smear_up", "L1Jet_eta_scale_corr_resolution_smear_up", "L1Jet_phi_scale_corr_resolution_smear_up"]
         branches_scale_nominal_smear_down = ["L1Jet_pt_scale_corr_resolution_smear_down", "L1Jet_eta_scale_corr_resolution_smear_down", "L1Jet_phi_scale_corr_resolution_smear_down"]
 
-        return df, (branches_nominal + branches_scale_up_smear_nominal + branches_scale_down_smear_nominal + branches_scale_nominal_smear_up + branches_scale_nominal_smear_down)
+        return df, (branches_base + branches_nominal + branches_scale_up_smear_nominal + branches_scale_down_smear_nominal + branches_scale_nominal_smear_up + branches_scale_nominal_smear_down)
 
 
 def JetPtReshuffleScaleResolution(**kwargs):

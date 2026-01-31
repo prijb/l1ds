@@ -81,6 +81,7 @@ class Config(cmt_config):
                 skip_logs = True,
                 runPeriod = "2024",
             ),
+            # Change runPeriod to smear it to a given year
             Dataset("WJet_2024_V15",
                 folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/WtoMuNu-4Jets_TuneCP5_13p6TeV_madgraphMLM-pythia8/Summer24NanoV15WithL1/251217_045803",
                 process = self.processes.get("wjet"),

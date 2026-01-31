@@ -5,16 +5,16 @@ jet_pt_scale:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
 
-jet_pt_resolution:
-  name: JetPtResolutionAlt
+jet_pt_reshuffle:
+  name: JetPtReshuffleScale
   path: modules.jet_pt_systematics_nano_v2
   parameters:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
 
-jet_pt_reshuffle:
-  name: JetPtReshuffleScaleResolution
-  path: modules.jet_pt_systematics_nano_v2
+muonjet_skim:
+  name: MuonJetScale
+  path: modules.jet_pt_systematics_skim
   parameters:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
