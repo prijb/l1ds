@@ -1,3 +1,4 @@
+# Using ntuples for deriving dijet systematics (WJet and Muon data)
 from analysis_tools import ObjectCollection, Category, Process, Dataset, Feature, Systematic
 from analysis_tools.utils import DotDict
 from analysis_tools.utils import join_root_selection as jrs
@@ -5,71 +6,107 @@ from plotting_tools import Label
 from collections import OrderedDict
 
 from cmt.config.base_config import Config as cmt_config
-from config.qcd_datasets import Config as qcd_config
 from cmt.base_tasks.base import Task
 
-
-class Config(qcd_config, cmt_config):
+class Config(cmt_config):
     def add_categories(self, **kwargs):
         categories = [
-            Category("base", "base", selection="event >= 0"),
-            Category("dum", "dum", selection="event == 423"),
-            Category("hh", ">= 4 L1 Jets", selection="nL1Jet >= 4"),
+            Category("base", "base", selection="nL1Jet > -1"),
+            Category("dum", "Nonzero jets", selection="nL1Jet > 0"),
         ]
         return ObjectCollection(categories)
 
     def add_processes(self):
-        qcd_processes = super(Config, self).add_qcd_processes()
         processes = [
-            Process("ggf", Label("HH_{ggF}"), color=(0, 0, 0), isSignal=True),
-            Process("ggf_sm", Label("HH_{ggF} (SM)"), color=(0, 0, 0), isSignal=True,
-                parent_process="ggf")
+            Process("wjet", Label("WJet"), color=(0, 0, 255), isData=False),
+            Process("dy", Label("DY"), color=(0, 0, 255), isData=False),
+            Process("data", Label("Data"), color=(0, 0, 0), isData=True),
         ]
 
         process_group_names = {
             "default": [
-                "ggf_sm",
-                "qcd"
-                # "data_tau",
-                # "dy_high",
-                # "tt_dl",
-                # "data",
-                # "background",
+                "wjet",
+                "dy",
+                "data"
+            ],
+            "data": [
+                "data"
+            ],
+            "mc": [
+                "wjet",
+                "dy"
             ],
         }
 
         process_training_names = {}
 
-        return ObjectCollection(processes) + qcd_processes, process_group_names, process_training_names
+        # adding reweighed processes
+        processes = ObjectCollection(processes)
 
+        return ObjectCollection(processes), process_group_names, process_training_names
 
     def add_datasets(self):
-        qcd_datasets = super(Config, self).add_qcd_datasets()
+        self.tree_name = "Events"
         datasets = [
-            Dataset("ggf_sm",
-                # dataset="/GluGlutoHHto2B2Tau_kl-1p00_kt-1p00_c2-0p00_TuneCP5_13p6TeV_powheg-pythia8/"
-                    # "jleonhol-v1-00000000000000000000000000000000/USER",
-                folder="/vols/cms/jleonhol/l1scouting/samples/hh4b",
-                process=self.processes.get("ggf_sm"),
-                xs=0.02964,
-                tags=["ul"])
+            Dataset("Muon0_2024G",
+                folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/Muon0/v2/250921_144145",
+                process = self.processes.get("data"),
+                prefix = "gfe02.grid.hep.ph.ic.ac.uk",
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2024",
+            ),
+            Dataset("Muon0_2025C_v1",
+                folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/Muon0/v1/251211_002847",
+                process = self.processes.get("data"),
+                prefix = "gfe02.grid.hep.ph.ic.ac.uk",
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2025",
+            ),
+            Dataset("WJet_2024",
+                folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/WtoMuNu-4Jets_TuneCP5_13p6TeV_madgraphMLM-pythia8/Summer24NanoV14WithL1/251209_061949",
+                process = self.processes.get("wjet"),
+                prefix = "gfe02.grid.hep.ph.ic.ac.uk",
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2024",
+            ),
+            Dataset("WJet_2024_V15",
+                folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/WtoMuNu-4Jets_TuneCP5_13p6TeV_madgraphMLM-pythia8/Summer24NanoV15WithL1/251217_045803",
+                process = self.processes.get("wjet"),
+                prefix = "gfe02.grid.hep.ph.ic.ac.uk",
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2024",
+            ),
         ]
-        return ObjectCollection(datasets) + qcd_datasets
+
+        return ObjectCollection(datasets)
 
     def add_features(self):
-        from config.features_hh import features
+        from config.features_dijet_2025 import features
         return ObjectCollection(features)
 
     def add_weights(self):
         weights = DotDict()
         weights.default = "1"
 
-        weights.total_events_weights = ["genWeight"]
-        # weights.total_events_weights = ["genWeight"]
-        # weights.total_events_weights = ["1"]
+        weights.total_events_weights = ["1"]
 
-        weights.base = ["genWeight"]  # others needed
-        # weights.base = ["1"]  # others needed
+        weights.base = ["1"]
 
         for category in self.categories:
             weights[category.name] = weights.base
@@ -78,15 +115,13 @@ class Config(qcd_config, cmt_config):
 
     def add_systematics(self):
         systematics = [
-
         ]
         return ObjectCollection(systematics)
-
+    
     def add_default_module_files(self):
         defaults = {}
-        # defaults["PreprocessRDF"] = "modules"
-        # defaults["PreCounter"] = "weights"
         return defaults
+
 
     # other methods
     def get_norm_systematics(self, processes_datasets, region):
@@ -149,5 +184,4 @@ class Config(qcd_config, cmt_config):
         return systematics
 
 
-# config = Config("base", year=2018, ecm=13, lumi_pb=59741)
-config = Config("hh_2024", year=2024, ecm=13.6, lumi_pb=1)
+config = Config("dijet_syst", year=2025, ecm=13.6, lumi_pb=45.0)

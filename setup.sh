@@ -221,6 +221,12 @@ action() {
           #compile="1"
         #fi
 
+        export L1DS_PATH="L1DS/Modules"
+        if [ ! -d "$L1DS_PATH" ]; then
+            git clone git@github.com:ic-l1ds/l1ds-modules.git L1DS/Modules
+            compile="1"
+        fi
+
         #export CORRECTIONS_PATH="Corrections"
         #cmt_add_root_inc $(correction config --incdir)
         #if [ ! -d "$CORRECTIONS_PATH" ]; then

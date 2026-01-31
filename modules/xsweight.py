@@ -41,3 +41,53 @@ class PileupVetoProducer():
     
 def PileupVeto(*args, **kwargs):
     return lambda: PileupVetoProducer(*args, **kwargs)
+
+
+# Pileup veto (nanoaod)
+class PileupVetoNanoProducer():
+    def __init__(self, *args, **kwargs):
+        ROOT.gInterpreter.Declare("""
+            using Vfloat = ROOT::RVec<float>;
+            // Vetoes event if any of the pileup pT hats are greater than the gen pT hat
+            bool vetoPileupPtHat(float genPtHat, Vfloat PileupPtHats){
+                bool veto = false;
+                for(auto pthat : PileupPtHats){
+                    if(pthat > genPtHat){
+                    veto = true;
+                    }
+                }
+                return veto;
+            }
+        """
+        )
+
+    def run(self, df):
+        df = df.Define("pileup_veto", "vetoPileupPtHat(GenPtHat_hardPtHat, PileupPtHat_puPtHats)")
+        return df, ["pileup_veto"]
+    
+def PileupVetoNano(*args, **kwargs):
+    return lambda: PileupVetoNanoProducer(*args, **kwargs)
+
+class EventPtHatsProducer():
+    def __init__(self, *args, **kwargs):
+        ROOT.gInterpreter.Declare(
+            """
+            using Vfloat = ROOT::RVec<float>;
+            // Makes an array with both the gen and PileupPtHat
+            auto getEventPtHats(float genPtHat, Vfloat PileupPtHats){
+                Vfloat EventPtHatsVector;
+                for(auto pthat : PileupPtHats){
+                    EventPtHatsVector.push_back(pthat);
+                }
+                EventPtHatsVector.push_back(genPtHat);
+                Vfloat EventPtHatsVectorSorted = Reverse(Sort(EventPtHatsVector));
+                return EventPtHatsVectorSorted;
+            }
+        """)
+
+    def run(self, df):
+        df = df.Define("EventPtHats", "getEventPtHats(GenPtHat_hardPtHat, PileupPtHat_puPtHats)")
+        return df, ["EventPtHats"]
+    
+def EventPtHats(*args, **kwargs):
+    return lambda: EventPtHatsProducer(*args, **kwargs)

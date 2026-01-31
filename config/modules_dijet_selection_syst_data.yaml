@@ -1,0 +1,25 @@
+inclusive_dijet_selection:
+  name: InclusiveDijetSelection
+  path: modules.dijet_selection_2025
+  parameters:
+    year: self.config.year
+
+jet_pt_scale_unity_data:
+  name: JetPtScaleData
+  path: modules.jet_pt_systematics_nano
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+
+jet_pt_reshuffle:
+  name: JetPtReshuffle
+  path: modules.jet_pt_systematics_nano
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+    
+inclusive_dijet_selection_reshuffle:
+  name: InclusiveDijetSelectionReshuffle
+  path: modules.dijet_selection_2025
+  parameters:
+    year: self.config.year

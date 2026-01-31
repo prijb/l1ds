@@ -1,0 +1,5 @@
+inclusive_dijet_selection:
+  name: InclusiveDijetSelection
+  path: modules.dijet_selection_2025
+  parameters:
+    year: self.config.year
