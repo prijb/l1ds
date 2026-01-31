@@ -76,6 +76,8 @@ class JetPtScaleProducer():
             df = df.Define(f"L1Jet_{branch_name}", f"L1Jet_pt * {branch_name}")
             jet_branches.append(f"L1Jet_{branch_name}")
 
+        return df, jet_branches
+
 def JetPtScale(**kwargs):
     return lambda: JetPtScaleProducer(**kwargs)
 
