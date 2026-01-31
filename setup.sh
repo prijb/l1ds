@@ -9,7 +9,7 @@ action() {
     cd nanoaod_base_analysis
     #local this_file="$( [ ! -z "$ZSH_VERSION" ] && echo "${(%):-%x}" || echo "${BASH_SOURCE[0]}" )"
     #local this_dir="$( cd "$( dirname "$this_file" )" && pwd )"
-    export CMT_BASE="DUMMY"
+    export CMT_BASE="/vols/cms/pb4918/L1Scouting/Feb26/l1ds/nanoaod_base_analysis"
     #export CMT_BASE="/home/hep/jleonhol/l1dsbbtt/nanoaod_base_analysis"
     if [[ "$CMT_BASE" == "DUMMY" ]]; then
         echo "Need to change the path stored in CMT_BASE to the present folder"
@@ -227,23 +227,23 @@ action() {
             compile="1"
         fi
 
-        #export CORRECTIONS_PATH="Corrections"
-        #cmt_add_root_inc $(correction config --incdir)
-        #if [ ! -d "$CORRECTIONS_PATH" ]; then
-           #git clone https://gitlab.cern.ch/cms-phys-ciemat/jme-corrections.git Corrections/JME
-           #cd Corrections/JME/data
-           #wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL18_V5_MC.tar.gz
-           #wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL17_V5_MC.tar.gz
-           #wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL16_V7_MC.tar.gz
-           #wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL16APV_V7_MC.tar.gz
-           #cd -
+        export CORRECTIONS_PATH="Corrections"
+        cmt_add_root_inc $(correction config --incdir)
+        if [ ! -d "$CORRECTIONS_PATH" ]; then
+           git clone https://gitlab.cern.ch/cms-phys-ciemat/jme-corrections.git Corrections/JME
+           cd Corrections/JME/data
+           wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL18_V5_MC.tar.gz
+           wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL17_V5_MC.tar.gz
+           wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL16_V7_MC.tar.gz
+           wget https://github.com/cms-jet/JECDatabase/raw/master/tarballs/Summer19UL16APV_V7_MC.tar.gz
+           cd -
 
-          #git clone https://gitlab.cern.ch/cms-phys-ciemat/lum-corrections.git Corrections/LUM
-          # git clone https://gitlab.cern.ch/cms-phys-ciemat/muo-corrections.git Corrections/MUO
-          # git clone https://gitlab.cern.ch/cms-phys-ciemat/egm-corrections.git Corrections/EGM
-          # git clone https://gitlab.cern.ch/cms-phys-ciemat/btv-corrections.git Corrections/BTV
-          #compile="1"
-        #fi
+          git clone https://gitlab.cern.ch/cms-phys-ciemat/lum-corrections.git Corrections/LUM
+           git clone https://gitlab.cern.ch/cms-phys-ciemat/muo-corrections.git Corrections/MUO
+           git clone https://gitlab.cern.ch/cms-phys-ciemat/egm-corrections.git Corrections/EGM
+           git clone https://gitlab.cern.ch/cms-phys-ciemat/btv-corrections.git Corrections/BTV
+          compile="1"
+        fi
 
         export COMBINE_PATH="HiggsAnalysis/CombinedLimit"
         if [ ! -d "$COMBINE_PATH" ]; then

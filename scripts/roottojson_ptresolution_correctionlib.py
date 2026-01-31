@@ -17,6 +17,7 @@ parser.add_argument("--input_sf", type=str, required=True, help="Input ROOT file
 parser.add_argument("--output_res", type=str, default="data/test/test_res.json", help="Output JSON file for resolution")
 parser.add_argument("--output_sf", type=str, default="data/test/test_sf.json", help="Output JSON file for resolution SF")
 parser.add_argument("--output_smear", type=str, default="data/test/test_smear.json", help="Output JSON file for resolution smear")
+parser.add_argument("--skiprand", action="store_true", help="Make a smear json that already accepts the random term")
 args = parser.parse_args()
 
 input_file_res = args.input_res
@@ -102,35 +103,56 @@ with open(output_file_sf, "w") as fout:
     fout.write(json_text_sf)
 
 ## Create the smearing factor
-smear_corr = cs.Correction(
-    name = "L1JERSmear",
-    description = "L1 Jet Data/MC resolution smearing",
-    version = 1,
-    inputs = [
-        cs.Variable(name="Jet_eta", type="real", description="Jet eta"),
-        cs.Variable(name="Jet_pt", type="real", description="Jet pt"),
-        cs.Variable(name="JER", type="real", description="Reference jet energy resolution"),
-        cs.Variable(name="JERSF", type="real", description="Jet energy resolution scale factor"),
-        cs.Variable(name="RandSmear", type="real", description="Random multiplicative factor from Normal dist"),
-        cs.Variable(name="EventID", type="real", description="EventID"),
-    ],
-    output = cs.Variable(name="smear", type="real", description="Smear factor"), 
-    data = cs.Transform(
-        nodetype="transform",
-        input="RandSmear",
-        rule=cs.HashPRNG(
-            nodetype="hashprng",
-            inputs=["Jet_eta", "EventID"],
-            distribution="normal",
+if args.skiprand:
+    print("\nSkipping random term")
+    smear_corr = cs.Correction(
+        name = "L1JERSmear",
+        description = "L1 Jet Data/MC resolution smearing",
+        version = 1,
+        inputs = [
+            cs.Variable(name="JER", type="real", description="Reference jet energy resolution"),
+            cs.Variable(name="JERSF", type="real", description="Jet energy resolution scale factor"),
+            cs.Variable(name="RandSmear", type="real", description="Random multiplicative factor from Normal dist"),
+        ],
+        output = cs.Variable(name="smear", type="real", description="Smear factor"), 
+        data = cs.Formula(
+                nodetype="formula",
+                parser="TFormula",
+                expression="1 + sqrt(max(x*x - 1, 0)) * y * z",
+                variables=["JERSF", "JER", "RandSmear"]
         ),
-        content=cs.Formula(
-            nodetype="formula",
-            parser="TFormula",
-            expression="1 + sqrt(max(x*x - 1, 0)) * y * z",
-            variables=["JERSF", "JER", "RandSmear"]
+    )
+
+else:
+    smear_corr = cs.Correction(
+        name = "L1JERSmear",
+        description = "L1 Jet Data/MC resolution smearing",
+        version = 1,
+        inputs = [
+            cs.Variable(name="Jet_eta", type="real", description="Jet eta"),
+            cs.Variable(name="Jet_pt", type="real", description="Jet pt"),
+            cs.Variable(name="JER", type="real", description="Reference jet energy resolution"),
+            cs.Variable(name="JERSF", type="real", description="Jet energy resolution scale factor"),
+            cs.Variable(name="RandSmear", type="real", description="Random multiplicative factor from Normal dist"),
+            cs.Variable(name="EventID", type="real", description="EventID"),
+        ],
+        output = cs.Variable(name="smear", type="real", description="Smear factor"), 
+        data = cs.Transform(
+            nodetype="transform",
+            input="RandSmear",
+            rule=cs.HashPRNG(
+                nodetype="hashprng",
+                inputs=["Jet_eta", "EventID"],
+                distribution="normal",
+            ),
+            content=cs.Formula(
+                nodetype="formula",
+                parser="TFormula",
+                expression="1 + sqrt(max(x*x - 1, 0)) * y * z",
+                variables=["JERSF", "JER", "RandSmear"]
+            ),
         ),
-    ),
-)
+    )
 
 cset_smear_corr = cs.CorrectionSet(
     schema_version = 2,
