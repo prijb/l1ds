@@ -232,15 +232,15 @@ class JetPtResolutionAltProducer():
         if "2024" in self.runPeriod:
             print("Year: 2024")
             filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2024.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2024.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2024_norand.json"
         elif "2025" in self.runPeriod:
             print("Year: 2025")
             filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
         else:
             print("No year specified, falling back to 2025")
             filename_sf = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Sep25/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
 
         if self.isMC:
             print(f"Loading resolution corrections for year: {self.runPeriod}")

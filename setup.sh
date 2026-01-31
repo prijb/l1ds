@@ -319,7 +319,7 @@ action() {
             cmt_pip_install sphinx_rtd_theme
             cmt_pip_install sphinx_design
             cmt_pip_install envyaml
-            cmt_pip_install matplotlib==3.4.3
+            #cmt_pip_install matplotlib==3.4.3
         fi
 
         # gfal python bindings
