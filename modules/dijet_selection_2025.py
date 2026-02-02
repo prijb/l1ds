@@ -135,10 +135,10 @@ class InclusiveDijetSelectionZBProducer():
 def InclusiveDijetSelectionZB(*args, **kwargs):
     return lambda: InclusiveDijetSelectionZBProducer(*args, **kwargs)
 
-############## Reorder jets according to correction and do selections wrt to this ##########################
-# Obtains the corrected kinematics after reordering in pT
-# Dependency: JetPtReshuffle from modules.jet_pt_systematics_nano
-class InclusiveDijetSelectionReshuffleProducer():
+############## Using corrected and reordered jets ##########################
+# Obtains the corrected kinematics after JES
+# Dependency: JetPtReshuffleScale from modules.jet_pt_systematics_nano_v2
+class InclusiveDijetSelectionScaleProducer():
     def __init__(self, *args, **kwargs):
         ROOT.gInterpreter.Declare(
         """
@@ -180,20 +180,101 @@ class InclusiveDijetSelectionReshuffleProducer():
         """)
     
     def run(self, df):
-        df = df.Filter("nL1Jet > 1")
-
-        df = df.Define("L1Jet_eta_scale_corr", "Take(L1Jet_eta, L1Jet_pt_scale_corr_order)")
-        df = df.Define("L1Jet_phi_scale_corr", "Take(L1Jet_phi, L1Jet_pt_scale_corr_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr", "Take(L1Jet_pt_scale_corr, L1Jet_pt_scale_corr_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_up", "Take(L1Jet_pt_scale_corr_up, L1Jet_pt_scale_corr_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_down", "Take(L1Jet_pt_scale_corr_down, L1Jet_pt_scale_corr_order)")
-
         # Get mjj, deta and dphi
-        df = df.Define("mjj_scale_corr", "getDijetMass(L1Jet_pt_scale_corr, L1Jet_eta_scale_corr, L1Jet_phi_scale_corr)")
-        df = df.Define("deta_scale_corr", "std::abs(L1Jet_eta_scale_corr[0] - L1Jet_eta_scale_corr[1])").Define("dphi_scale_corr", "getDijetDPhi(L1Jet_phi_scale_corr)").Define("pt_scale_corr", "getDijetPt(L1Jet_pt_scale_corr, L1Jet_eta_scale_corr, L1Jet_phi_scale_corr)")
+        # Nominal
+        df = df.Define("mjj_scale_corr_nominal", "getDijetMass(L1Jet_pt_scale_corr_nominal, L1Jet_eta_scale_corr_nominal, L1Jet_phi_scale_corr_nominal)")
+        df = df.Define("deta_scale_corr_nominal", "std::abs(L1Jet_eta_scale_corr_nominal[0] - L1Jet_eta_scale_corr_nominal[1])").Define("dphi_scale_corr_nominal", "getDijetDPhi(L1Jet_phi_scale_corr_nominal)").Define("pt_scale_corr_nominal", "getDijetPt(L1Jet_pt_scale_corr_nominal, L1Jet_eta_scale_corr_nominal, L1Jet_phi_scale_corr_nominal)")
+
+        # Up
+        df = df.Define("mjj_scale_corr_up", "getDijetMass(L1Jet_pt_scale_corr_up, L1Jet_eta_scale_corr_up, L1Jet_phi_scale_corr_up)")
+        df = df.Define("deta_scale_corr_up", "std::abs(L1Jet_eta_scale_corr_up[0] - L1Jet_eta_scale_corr_up[1])").Define("dphi_scale_corr_up", "getDijetDPhi(L1Jet_phi_scale_corr_up)").Define("pt_scale_corr_up", "getDijetPt(L1Jet_pt_scale_corr_up, L1Jet_eta_scale_corr_up, L1Jet_phi_scale_corr_up)")
+
+        # Down
+        df = df.Define("mjj_scale_corr_down", "getDijetMass(L1Jet_pt_scale_corr_down, L1Jet_eta_scale_corr_down, L1Jet_phi_scale_corr_down)")
+        df = df.Define("deta_scale_corr_down", "std::abs(L1Jet_eta_scale_corr_down[0] - L1Jet_eta_scale_corr_down[1])").Define("dphi_scale_corr_down", "getDijetDPhi(L1Jet_phi_scale_corr_down)").Define("pt_scale_corr_down", "getDijetPt(L1Jet_pt_scale_corr_down, L1Jet_eta_scale_corr_down, L1Jet_phi_scale_corr_down)")
+
+        branches_nominal = ["mjj_scale_corr_nominal", "deta_scale_corr_nominal", "dphi_scale_corr_nominal"]
+        branches_up = ["mjj_scale_corr_up", "deta_scale_corr_up", "dphi_scale_corr_up"]
+        branches_down = ["mjj_scale_corr_down", "deta_scale_corr_down", "dphi_scale_corr_down"]
 
 
-        return df, ["L1Jet_eta_scale_corr", "L1Jet_phi_scale_corr", "L1Jet_pt_scale_corr", "L1Jet_pt_scale_corr_up", "L1Jet_pt_scale_corr_down", "mjj_scale_corr", "deta_scale_corr", "dphi_scale_corr"]
+        return df, (branches_nominal + branches_up + branches_down)
 
-def InclusiveDijetSelectionReshuffle(*args, **kwargs):
-    return lambda: InclusiveDijetSelectionReshuffleProducer(*args, **kwargs)
+def InclusiveDijetSelectionScale(*args, **kwargs):
+    return lambda: InclusiveDijetSelectionScaleProducer(*args, **kwargs)
+
+# Obtains the corrected kinematics after JES and JER
+# Dependency: JetPtReshuffleScaleResolution from modules.jet_pt_systematics_nano_v2
+class InclusiveDijetSelectionScaleResolutionProducer():
+    def __init__(self, *args, **kwargs):
+        ROOT.gInterpreter.Declare(
+        """
+            using Vbool = ROOT::RVec<bool>;
+            using Vint = ROOT::RVec<int>;
+            using Vfloat = ROOT::RVec<float>;
+            using Vdouble = ROOT::RVec<double>;
+
+            auto getDijetMass(Vfloat Jet_pt, Vfloat Jet_eta, Vfloat Jet_phi){
+                float mjj = -1;
+                if(Jet_pt.size() > 1){
+                    ROOT::Math::PtEtaPhiMVector jet1(Jet_pt[0], Jet_eta[0], Jet_phi[0], 0);
+                    ROOT::Math::PtEtaPhiMVector jet2(Jet_pt[1], Jet_eta[1], Jet_phi[1], 0);
+                    mjj = (jet1 + jet2).M();
+                }
+
+                return mjj;
+            }
+
+            auto getDijetPt(Vfloat Jet_pt, Vfloat Jet_eta, Vfloat Jet_phi){
+                float ptjj = -1;
+                if(Jet_pt.size() > 1){
+                    ROOT::Math::PtEtaPhiMVector jet1(Jet_pt[0], Jet_eta[0], Jet_phi[0], 0);
+                    ROOT::Math::PtEtaPhiMVector jet2(Jet_pt[1], Jet_eta[1], Jet_phi[1], 0);
+                    ptjj = (jet1 + jet2).Pt();
+                }
+
+                return ptjj;
+            }
+
+            auto getDijetDPhi(Vfloat Jet_phi){
+                float dijet_dphi = -1;
+                if(Jet_phi.size() > 1){
+                float dphi = std::abs(TVector2::Phi_mpi_pi(Jet_phi[0] - Jet_phi[1]));  
+                dijet_dphi = dphi;             
+                }
+                return dijet_dphi;
+            }
+        """)
+    
+    def run(self, df):
+        # Nominal JES, Nominal JER
+        df = df.Define("mjj_scale_corr_nominal_resolution_smear_nominal", "getDijetMass(L1Jet_pt_scale_corr_nominal_resolution_smear_nominal, L1Jet_eta_scale_corr_nominal_resolution_smear_nominal, L1Jet_phi_scale_corr_nominal_resolution_smear_nominal)")
+        df = df.Define("deta_scale_corr_nominal_resolution_smear_nominal", "std::abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[0] - L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[1])").Define("dphi_scale_corr_nominal_resolution_smear_nominal", "getDijetDPhi(L1Jet_phi_scale_corr_nominal_resolution_smear_nominal)").Define("pt_scale_corr_nominal_resolution_smear_nominal", "getDijetPt(L1Jet_pt_scale_corr_nominal_resolution_smear_nominal, L1Jet_eta_scale_corr_nominal_resolution_smear_nominal, L1Jet_phi_scale_corr_nominal_resolution_smear_nominal)")
+
+        # Up JES, Nominal JER
+        df = df.Define("mjj_scale_corr_up_resolution_smear_nominal", "getDijetMass(L1Jet_pt_scale_corr_up_resolution_smear_nominal, L1Jet_eta_scale_corr_up_resolution_smear_nominal, L1Jet_phi_scale_corr_up_resolution_smear_nominal)")
+        df = df.Define("deta_scale_corr_up_resolution_smear_nominal", "std::abs(L1Jet_eta_scale_corr_up_resolution_smear_nominal[0] - L1Jet_eta_scale_corr_up_resolution_smear_nominal[1])").Define("dphi_scale_corr_up_resolution_smear_nominal", "getDijetDPhi(L1Jet_phi_scale_corr_up_resolution_smear_nominal)").Define("pt_scale_corr_up_resolution_smear_nominal", "getDijetPt(L1Jet_pt_scale_corr_up_resolution_smear_nominal, L1Jet_eta_scale_corr_up_resolution_smear_nominal, L1Jet_phi_scale_corr_up_resolution_smear_nominal)")
+
+        # Down JES, Nominal JER
+        df = df.Define("mjj_scale_corr_down_resolution_smear_nominal", "getDijetMass(L1Jet_pt_scale_corr_down_resolution_smear_nominal, L1Jet_eta_scale_corr_down_resolution_smear_nominal, L1Jet_phi_scale_corr_down_resolution_smear_nominal)")
+        df = df.Define("deta_scale_corr_down_resolution_smear_nominal", "std::abs(L1Jet_eta_scale_corr_down_resolution_smear_nominal[0] - L1Jet_eta_scale_corr_down_resolution_smear_nominal[1])").Define("dphi_scale_corr_down_resolution_smear_nominal", "getDijetDPhi(L1Jet_phi_scale_corr_down_resolution_smear_nominal)").Define("pt_scale_corr_down_resolution_smear_nominal", "getDijetPt(L1Jet_pt_scale_corr_down_resolution_smear_nominal, L1Jet_eta_scale_corr_down_resolution_smear_nominal, L1Jet_phi_scale_corr_down_resolution_smear_nominal)")
+
+        # Nominal JES, Up JER
+        df = df.Define("mjj_scale_corr_nominal_resolution_smear_up", "getDijetMass(L1Jet_pt_scale_corr_nominal_resolution_smear_up, L1Jet_eta_scale_corr_nominal_resolution_smear_up, L1Jet_phi_scale_corr_nominal_resolution_smear_up)")
+        df = df.Define("deta_scale_corr_nominal_resolution_smear_up", "std::abs(L1Jet_eta_scale_corr_nominal_resolution_smear_up[0] - L1Jet_eta_scale_corr_nominal_resolution_smear_up[1])").Define("dphi_scale_corr_nominal_resolution_smear_up", "getDijetDPhi(L1Jet_phi_scale_corr_nominal_resolution_smear_up)").Define("pt_scale_corr_nominal_resolution_smear_up", "getDijetPt(L1Jet_pt_scale_corr_nominal_resolution_smear_up, L1Jet_eta_scale_corr_nominal_resolution_smear_up, L1Jet_phi_scale_corr_nominal_resolution_smear_up)")
+
+        # Nominal JES, Down JER
+        df = df.Define("mjj_scale_corr_nominal_resolution_smear_down", "getDijetMass(L1Jet_pt_scale_corr_nominal_resolution_smear_down, L1Jet_eta_scale_corr_nominal_resolution_smear_down, L1Jet_phi_scale_corr_nominal_resolution_smear_down)")
+        df = df.Define("deta_scale_corr_nominal_resolution_smear_down", "std::abs(L1Jet_eta_scale_corr_nominal_resolution_smear_down[0] - L1Jet_eta_scale_corr_nominal_resolution_smear_down[1])").Define("dphi_scale_corr_nominal_resolution_smear_down", "getDijetDPhi(L1Jet_phi_scale_corr_nominal_resolution_smear_down)").Define("pt_scale_corr_nominal_resolution_smear_down", "getDijetPt(L1Jet_pt_scale_corr_nominal_resolution_smear_down, L1Jet_eta_scale_corr_nominal_resolution_smear_down, L1Jet_phi_scale_corr_nominal_resolution_smear_down)")
+
+        branches_scale_nominal_smear_nominal = ["mjj_scale_corr_nominal_resolution_smear_nominal", "deta_scale_corr_nominal_resolution_smear_nominal", "dphi_scale_corr_nominal_resolution_smear_nominal"]
+        branches_scale_up_smear_nominal = ["mjj_scale_corr_up_resolution_smear_nominal", "deta_scale_corr_up_resolution_smear_nominal", "dphi_scale_corr_up_resolution_smear_nominal"]
+        branches_scale_down_smear_nominal = ["mjj_scale_corr_down_resolution_smear_nominal", "deta_scale_corr_down_resolution_smear_nominal", "dphi_scale_corr_down_resolution_smear_nominal"]
+        branches_scale_nominal_smear_up = ["mjj_scale_corr_nominal_resolution_smear_up", "deta_scale_corr_nominal_resolution_smear_up", "dphi_scale_corr_nominal_resolution_smear_up"]
+        branches_scale_nominal_smear_down = ["mjj_scale_corr_nominal_resolution_smear_down", "deta_scale_corr_nominal_resolution_smear_down", "dphi_scale_corr_nominal_resolution_smear_down"]
+
+
+        return df, (branches_scale_nominal_smear_nominal + branches_scale_up_smear_nominal + branches_scale_down_smear_nominal + branches_scale_nominal_smear_up + branches_scale_nominal_smear_down)
+
+def InclusiveDijetSelectionScaleResolution(*args, **kwargs):
+    return lambda: InclusiveDijetSelectionScaleResolutionProducer(*args, **kwargs)

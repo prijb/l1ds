@@ -57,7 +57,7 @@ class JetPtScaleProducer():
                     // Applying corrections to all jets with pT >= 20
                     for (size_t i=0; i < pt.size(); i++){
                         float scale = corr_scale.eval({eta[i], pt[i], syst});
-                        if (pt[i] >= 20) {
+                        if (pt[i] >= 10) {
                             scale_factor.push_back(1./scale); 
                         }
                         else{
@@ -69,7 +69,7 @@ class JetPtScaleProducer():
             """)
 
     def run(self, df):
-        branches = ["pt_scale_corr", "pt_scale_corr_up", "pt_scale_corr_down"]
+        branches = ["pt_scale_corr_nominal", "pt_scale_corr_up", "pt_scale_corr_down"]
         jet_branches = []
         for branch_name, syst in zip(branches, ["sf", "systup", "systdown"]):
             df = df.Define(branch_name, """get_jet_pt_scale(L1Jet_pt, L1Jet_eta, "%s")""" % syst)
@@ -163,7 +163,7 @@ class JetPtResolutionProducer():
                         // Applying corrections to all jets with pT > 20
                         for (size_t i=0; i < pt.size(); i++){
                             float smear = corr_smear.eval({eta[i], pt[i], jer[i], jersf[i], 1.0, (double)eventid});
-                            if (pt[i] >= 20) {
+                            if (pt[i] >= 10) {
                                 pt_resolution_smear.push_back(smear); 
                             }
                             else{
@@ -180,17 +180,17 @@ class JetPtResolutionProducer():
             branches_scale = ["pt_scale_corr_up", "pt_scale_corr_down"]
             for branch_name in branches_scale:
                 df = df.Define(f"{branch_name}_resolution_ref", f"""get_jet_pt_resolution_ref(L1Jet_{branch_name}, L1Jet_eta)""")
-                df = df.Define(f"{branch_name}_resolution_sf", f"""get_jet_pt_resolution_sf(L1Jet_{branch_name}, L1Jet_eta, "sf")""")
-                df = df.Define(f"{branch_name}_resolution_smear", f"""get_jet_pt_resolution_smear(L1Jet_{branch_name}, L1Jet_eta, {branch_name}_resolution_ref, {branch_name}_resolution_sf, event)""")
-                df = df.Define(f"L1Jet_{branch_name}_resolution_smear", f"L1Jet_{branch_name} * {branch_name}_resolution_smear")
+                df = df.Define(f"{branch_name}_resolution_sf_nominal", f"""get_jet_pt_resolution_sf(L1Jet_{branch_name}, L1Jet_eta, "sf")""")
+                df = df.Define(f"{branch_name}_resolution_smear_nominal", f"""get_jet_pt_resolution_smear(L1Jet_{branch_name}, L1Jet_eta, {branch_name}_resolution_ref, {branch_name}_resolution_sf_nominal, event)""")
+                df = df.Define(f"L1Jet_{branch_name}_resolution_smear_nominal", f"L1Jet_{branch_name} * {branch_name}_resolution_smear_nominal")
 
             # Nominal scale to Up/Down res
-            df = df.Define(f"pt_scale_corr_resolution_ref", f"""get_jet_pt_resolution_ref(L1Jet_pt_scale_corr, L1Jet_eta)""")
-            branches_res = ["resolution_smear", "resolution_smear_up", "resolution_smear_down"]
+            df = df.Define(f"pt_scale_corr_nominal_resolution_ref", f"""get_jet_pt_resolution_ref(L1Jet_pt_scale_corr_nominal, L1Jet_eta)""")
+            branches_res = ["resolution_smear_nominal", "resolution_smear_up", "resolution_smear_down"]
             for branch_name, syst in zip(branches_res, ["sf", "systup", "systdown"]):
-                df = df.Define(f"pt_scale_corr_{branch_name.replace('smear', 'sf')}", """get_jet_pt_resolution_sf(L1Jet_pt_scale_corr, L1Jet_eta, "%s")"""%syst)
-                df = df.Define(f"pt_scale_corr_{branch_name}", f"""get_jet_pt_resolution_smear(L1Jet_pt_scale_corr, L1Jet_eta, pt_scale_corr_resolution_ref, pt_scale_corr_{branch_name.replace('smear', 'sf')}, event)""")
-                df = df.Define(f"L1Jet_pt_scale_corr_{branch_name}", f"L1Jet_pt_scale_corr * pt_scale_corr_{branch_name}")
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name.replace('smear', 'sf')}", """get_jet_pt_resolution_sf(L1Jet_pt_scale_corr_nominal, L1Jet_eta, "%s")"""%syst)
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name}", f"""get_jet_pt_resolution_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, pt_scale_corr_nominal_resolution_ref, pt_scale_corr_nominal_{branch_name.replace('smear', 'sf')}, event)""")
+                df = df.Define(f"L1Jet_pt_scale_corr_nominal_{branch_name}", f"L1Jet_pt_scale_corr_nominal * pt_scale_corr_nominal_{branch_name}")
 
         # Make some redundant branches for data which isn't smeared
         else:
@@ -199,20 +199,20 @@ class JetPtResolutionProducer():
             branches_scale = ["pt_scale_corr_up", "pt_scale_corr_down"]
             for branch_name in branches_scale:
                 df = df.Define(f"{branch_name}_resolution_ref", "L1Jet_pt")
-                df = df.Define(f"{branch_name}_resolution_sf", "L1Jet_pt")
-                df = df.Define(f"{branch_name}_resolution_smear", f"L1Jet_pt")
-                df = df.Define(f"L1Jet_{branch_name}_resolution_smear", f"L1Jet_{branch_name}")
+                df = df.Define(f"{branch_name}_resolution_sf_nominal", "L1Jet_pt")
+                df = df.Define(f"{branch_name}_resolution_smear_nominal", f"L1Jet_pt")
+                df = df.Define(f"L1Jet_{branch_name}_resolution_smear_nominal", f"L1Jet_{branch_name}")
 
             # Nominal scale to Up/Down res
-            df = df.Define(f"pt_scale_corr_resolution_ref", f"L1Jet_pt")
-            branches_res = ["resolution_smear", "resolution_smear_up", "resolution_smear_down"]
+            df = df.Define(f"pt_scale_corr_nominal_resolution_ref", f"L1Jet_pt")
+            branches_res = ["resolution_smear_nominal", "resolution_smear_up", "resolution_smear_down"]
             for branch_name, syst in zip(branches_res, ["sf", "systup", "systdown"]):
-                df = df.Define(f"pt_scale_corr_{branch_name.replace('smear', 'sf')}", f"L1Jet_pt")
-                df = df.Define(f"pt_scale_corr_{branch_name}", f"L1Jet_pt")
-                df = df.Define(f"L1Jet_pt_scale_corr_{branch_name}", f"L1Jet_pt_scale_corr")
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name.replace('smear', 'sf')}", f"L1Jet_pt")
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name}", f"L1Jet_pt")
+                df = df.Define(f"L1Jet_pt_scale_corr_nominal_{branch_name}", f"L1Jet_pt_scale_corr_nominal")
 
         # Add the branches
-        branches = ["L1Jet_pt_scale_corr_resolution_smear", "L1Jet_pt_scale_corr_up_resolution_smear", "L1Jet_pt_scale_corr_down_resolution_smear", "L1Jet_pt_scale_corr_resolution_smear_up", "L1Jet_pt_scale_corr_resolution_smear_down"]
+        branches = ["L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", "L1Jet_pt_scale_corr_up_resolution_smear_nominal", "L1Jet_pt_scale_corr_down_resolution_smear_nominal", "L1Jet_pt_scale_corr_nominal_resolution_smear_up", "L1Jet_pt_scale_corr_nominal_resolution_smear_down"]
         return df, branches
         
 def JetPtResolution(**kwargs):
@@ -331,7 +331,7 @@ class JetPtResolutionAltProducer():
                             //Get the random factor
                             float rand = stable_gauss(eventid, eta[i], phi[i]);
                             float smear = corr_smear.eval({jer[i], jersf[i], rand});
-                            if (pt[i] >= 20) {
+                            if (pt[i] >= 10) {
                                 pt_resolution_smear.push_back(smear); 
                             }
                             else{
@@ -348,17 +348,17 @@ class JetPtResolutionAltProducer():
             branches_scale = ["pt_scale_corr_up", "pt_scale_corr_down"]
             for branch_name in branches_scale:
                 df = df.Define(f"{branch_name}_resolution_ref", f"""get_jet_pt_resolution_ref(L1Jet_{branch_name}, L1Jet_eta)""")
-                df = df.Define(f"{branch_name}_resolution_sf", f"""get_jet_pt_resolution_sf(L1Jet_{branch_name}, L1Jet_eta, "sf")""")
-                df = df.Define(f"{branch_name}_resolution_smear", f"""get_jet_pt_resolution_smear(L1Jet_{branch_name}, L1Jet_eta, L1Jet_phi, {branch_name}_resolution_ref, {branch_name}_resolution_sf, event)""")
-                df = df.Define(f"L1Jet_{branch_name}_resolution_smear", f"L1Jet_{branch_name} * {branch_name}_resolution_smear")
+                df = df.Define(f"{branch_name}_resolution_sf_nominal", f"""get_jet_pt_resolution_sf(L1Jet_{branch_name}, L1Jet_eta, "sf")""")
+                df = df.Define(f"{branch_name}_resolution_smear_nominal", f"""get_jet_pt_resolution_smear(L1Jet_{branch_name}, L1Jet_eta, L1Jet_phi, {branch_name}_resolution_ref, {branch_name}_resolution_sf_nominal, event)""")
+                df = df.Define(f"L1Jet_{branch_name}_resolution_smear_nominal", f"L1Jet_{branch_name} * {branch_name}_resolution_smear_nominal")
 
             # Nominal scale to Up/Down res
-            df = df.Define(f"pt_scale_corr_resolution_ref", f"""get_jet_pt_resolution_ref(L1Jet_pt_scale_corr, L1Jet_eta)""")
-            branches_res = ["resolution_smear", "resolution_smear_up", "resolution_smear_down"]
+            df = df.Define(f"pt_scale_corr_nominal_resolution_ref", f"""get_jet_pt_resolution_ref(L1Jet_pt_scale_corr_nominal, L1Jet_eta)""")
+            branches_res = ["resolution_smear_nominal", "resolution_smear_up", "resolution_smear_down"]
             for branch_name, syst in zip(branches_res, ["sf", "systup", "systdown"]):
-                df = df.Define(f"pt_scale_corr_{branch_name.replace('smear', 'sf')}", """get_jet_pt_resolution_sf(L1Jet_pt_scale_corr, L1Jet_eta, "%s")"""%syst)
-                df = df.Define(f"pt_scale_corr_{branch_name}", f"""get_jet_pt_resolution_smear(L1Jet_pt_scale_corr, L1Jet_eta, L1Jet_phi, pt_scale_corr_resolution_ref, pt_scale_corr_{branch_name.replace('smear', 'sf')}, event)""")
-                df = df.Define(f"L1Jet_pt_scale_corr_{branch_name}", f"L1Jet_pt_scale_corr * pt_scale_corr_{branch_name}")
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name.replace('smear', 'sf')}", """get_jet_pt_resolution_sf(L1Jet_pt_scale_corr_nominal, L1Jet_eta, "%s")"""%syst)
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name}", f"""get_jet_pt_resolution_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, L1Jet_phi, pt_scale_corr_nominal_resolution_ref, pt_scale_corr_nominal_{branch_name.replace('smear', 'sf')}, event)""")
+                df = df.Define(f"L1Jet_pt_scale_corr_nominal_{branch_name}", f"L1Jet_pt_scale_corr_nominal * pt_scale_corr_nominal_{branch_name}")
 
         # Make some redundant branches for data which isn't smeared
         else:
@@ -368,19 +368,19 @@ class JetPtResolutionAltProducer():
             for branch_name in branches_scale:
                 df = df.Define(f"{branch_name}_resolution_ref", "L1Jet_pt")
                 df = df.Define(f"{branch_name}_resolution_sf", "L1Jet_pt")
-                df = df.Define(f"{branch_name}_resolution_smear", f"L1Jet_pt")
-                df = df.Define(f"L1Jet_{branch_name}_resolution_smear", f"L1Jet_{branch_name}")
+                df = df.Define(f"{branch_name}_resolution_smear_nominal", f"L1Jet_pt")
+                df = df.Define(f"L1Jet_{branch_name}_resolution_smear_nominal", f"L1Jet_{branch_name}")
 
             # Nominal scale to Up/Down res
-            df = df.Define(f"pt_scale_corr_resolution_ref", f"L1Jet_pt")
-            branches_res = ["resolution_smear", "resolution_smear_up", "resolution_smear_down"]
+            df = df.Define(f"pt_scale_corr_nominal_resolution_ref", f"L1Jet_pt")
+            branches_res = ["resolution_smear_nominal", "resolution_smear_up", "resolution_smear_down"]
             for branch_name, syst in zip(branches_res, ["sf", "systup", "systdown"]):
-                df = df.Define(f"pt_scale_corr_{branch_name.replace('smear', 'sf')}", f"L1Jet_pt")
-                df = df.Define(f"pt_scale_corr_{branch_name}", f"L1Jet_pt")
-                df = df.Define(f"L1Jet_pt_scale_corr_{branch_name}", f"L1Jet_pt_scale_corr")
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name.replace('smear', 'sf')}", f"L1Jet_pt")
+                df = df.Define(f"pt_scale_corr_nominal_{branch_name}", f"L1Jet_pt")
+                df = df.Define(f"L1Jet_pt_scale_corr_nominal_{branch_name}", f"L1Jet_pt_scale_corr_nominal")
 
         # Add the branches
-        branches = ["L1Jet_pt_scale_corr_resolution_smear", "L1Jet_pt_scale_corr_up_resolution_smear", "L1Jet_pt_scale_corr_down_resolution_smear", "L1Jet_pt_scale_corr_resolution_smear_up", "L1Jet_pt_scale_corr_resolution_smear_down"]
+        branches = ["L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", "L1Jet_pt_scale_corr_up_resolution_smear_nominal", "L1Jet_pt_scale_corr_down_resolution_smear_nominal", "L1Jet_pt_scale_corr_nominal_resolution_smear_up", "L1Jet_pt_scale_corr_nominal_resolution_smear_down"]
         return df, branches
 
 def JetPtResolutionAlt(**kwargs):
@@ -415,7 +415,7 @@ class JetPtReshuffleScaleProducer():
         df = df.Redefine("L1Jet_pt", "Take(L1Jet_pt, L1Jet_pt_order)")
         df = df.Redefine("L1Jet_eta", "Take(L1Jet_eta, L1Jet_pt_order)")
         df = df.Redefine("L1Jet_phi", "Take(L1Jet_phi, L1Jet_pt_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr", "Take(L1Jet_pt_scale_corr, L1Jet_pt_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal", "Take(L1Jet_pt_scale_corr_nominal, L1Jet_pt_order)")
         df = df.Redefine("L1Jet_pt_scale_corr_up", "Take(L1Jet_pt_scale_corr_up, L1Jet_pt_order)")
         df = df.Redefine("L1Jet_pt_scale_corr_down", "Take(L1Jet_pt_scale_corr_down, L1Jet_pt_order)")
 
@@ -423,17 +423,17 @@ class JetPtReshuffleScaleProducer():
         df = df.Redefine("L1Jet_pt_order", "Reverse(Argsort(L1Jet_pt))")
 
         # Get the order of the scale corrected jets
-        df = df.Define("L1Jet_pt_scale_corr_order", "Reverse(Argsort(L1Jet_pt_scale_corr))")
+        df = df.Define("L1Jet_pt_scale_corr_nominal_order", "Reverse(Argsort(L1Jet_pt_scale_corr_nominal))")
         df = df.Define("L1Jet_pt_scale_corr_up_order", "Reverse(Argsort(L1Jet_pt_scale_corr_up))")
         df = df.Define("L1Jet_pt_scale_corr_down_order", "Reverse(Argsort(L1Jet_pt_scale_corr_down))")
 
         # Get the order difference wrt to the starting order
-        df = df.Define("L1Jet_pt_scale_corr_order_shift", "get_order_shift(L1Jet_pt_order, L1Jet_pt_scale_corr_order)")
+        df = df.Define("L1Jet_pt_scale_corr_nominal_order_shift", "get_order_shift(L1Jet_pt_order, L1Jet_pt_scale_corr_nominal_order)")
 
         # Reorder the jets according to the scale corrected pT
-        df = df.Define("L1Jet_eta_scale_corr", "Take(L1Jet_eta, L1Jet_pt_scale_corr_order)")
-        df = df.Define("L1Jet_phi_scale_corr", "Take(L1Jet_phi, L1Jet_pt_scale_corr_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr", "Take(L1Jet_pt_scale_corr, L1Jet_pt_scale_corr_order)")
+        df = df.Define("L1Jet_eta_scale_corr_nominal", "Take(L1Jet_eta, L1Jet_pt_scale_corr_nominal_order)")
+        df = df.Define("L1Jet_phi_scale_corr_nominal", "Take(L1Jet_phi, L1Jet_pt_scale_corr_nominal_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal", "Take(L1Jet_pt_scale_corr_nominal, L1Jet_pt_scale_corr_nominal_order)")
         # Up
         df = df.Define("L1Jet_eta_scale_corr_up", "Take(L1Jet_eta, L1Jet_pt_scale_corr_up_order)")
         df = df.Define("L1Jet_phi_scale_corr_up", "Take(L1Jet_phi, L1Jet_pt_scale_corr_up_order)")
@@ -443,7 +443,7 @@ class JetPtReshuffleScaleProducer():
         df = df.Define("L1Jet_phi_scale_corr_down", "Take(L1Jet_phi, L1Jet_pt_scale_corr_down_order)")
         df = df.Redefine("L1Jet_pt_scale_corr_down", "Take(L1Jet_pt_scale_corr_down, L1Jet_pt_scale_corr_down_order)")
 
-        return df, ["L1Jet_pt_order", "L1Jet_pt_scale_corr_order", "L1Jet_pt_scale_corr_order_shift", "L1Jet_eta_scale_corr", "L1Jet_phi_scale_corr", "L1Jet_pt_scale_corr", "L1Jet_eta_scale_corr_up", "L1Jet_phi_scale_corr_up", "L1Jet_pt_scale_corr_up","L1Jet_eta_scale_corr_down", "L1Jet_phi_scale_corr_down", "L1Jet_pt_scale_corr_down"]
+        return df, ["L1Jet_pt_order", "L1Jet_pt_scale_corr_nominal_order", "L1Jet_pt_scale_corr_nominal_order_shift", "L1Jet_eta_scale_corr_nominal", "L1Jet_phi_scale_corr_nominal", "L1Jet_pt_scale_corr_nominal", "L1Jet_eta_scale_corr_up", "L1Jet_phi_scale_corr_up", "L1Jet_pt_scale_corr_up","L1Jet_eta_scale_corr_down", "L1Jet_phi_scale_corr_down", "L1Jet_pt_scale_corr_down"]
 
 
 def JetPtReshuffleScale(**kwargs):
@@ -477,34 +477,34 @@ class JetPtReshuffleScaleResolutionProducer():
         df = df.Redefine("L1Jet_pt", "Take(L1Jet_pt, L1Jet_pt_order)")
         df = df.Redefine("L1Jet_eta", "Take(L1Jet_eta, L1Jet_pt_order)")
         df = df.Redefine("L1Jet_phi", "Take(L1Jet_phi, L1Jet_pt_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_resolution_smear", "Take(L1Jet_pt_scale_corr_resolution_smear, L1Jet_pt_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_up_resolution_smear", "Take(L1Jet_pt_scale_corr_up_resolution_smear, L1Jet_pt_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_down_resolution_smear", "Take(L1Jet_pt_scale_corr_down_resolution_smear, L1Jet_pt_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_resolution_smear_up", "Take(L1Jet_pt_scale_corr_resolution_smear_up, L1Jet_pt_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_resolution_smear_down", "Take(L1Jet_pt_scale_corr_resolution_smear_down, L1Jet_pt_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", "Take(L1Jet_pt_scale_corr_nominal_resolution_smear_nominal, L1Jet_pt_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_up_resolution_smear_nominal", "Take(L1Jet_pt_scale_corr_up_resolution_smear_nominal, L1Jet_pt_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_down_resolution_smear_nominal", "Take(L1Jet_pt_scale_corr_down_resolution_smear_nominal, L1Jet_pt_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal_resolution_smear_up", "Take(L1Jet_pt_scale_corr_nominal_resolution_smear_up, L1Jet_pt_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal_resolution_smear_down", "Take(L1Jet_pt_scale_corr_nominal_resolution_smear_down, L1Jet_pt_order)")
 
         # Get the starting order
         df = df.Redefine("L1Jet_pt_order", "Reverse(Argsort(L1Jet_pt))")
 
         # Get the order of the scale corrected jet before smearing
-        df = df.Define("L1Jet_pt_scale_corr_order", "Reverse(Argsort(L1Jet_pt_scale_corr))")
+        df = df.Define("L1Jet_pt_scale_corr_nominal_order", "Reverse(Argsort(L1Jet_pt_scale_corr_nominal))")
         df = df.Define("L1Jet_pt_scale_corr_up_order", "Reverse(Argsort(L1Jet_pt_scale_corr_up))")
         df = df.Define("L1Jet_pt_scale_corr_down_order", "Reverse(Argsort(L1Jet_pt_scale_corr_down))")
 
         # Get the order of the scale corrected jets after smearing
-        df = df.Define("L1Jet_pt_scale_corr_resolution_smear_order", "Reverse(Argsort(L1Jet_pt_scale_corr_resolution_smear))")
-        df = df.Define("L1Jet_pt_scale_corr_up_resolution_smear_order", "Reverse(Argsort(L1Jet_pt_scale_corr_up_resolution_smear))")
-        df = df.Define("L1Jet_pt_scale_corr_down_resolution_smear_order", "Reverse(Argsort(L1Jet_pt_scale_corr_down_resolution_smear))")
-        df = df.Define("L1Jet_pt_scale_corr_resolution_smear_up_order", "Reverse(Argsort(L1Jet_pt_scale_corr_resolution_smear_up))")
-        df = df.Define("L1Jet_pt_scale_corr_resolution_smear_down_order", "Reverse(Argsort(L1Jet_pt_scale_corr_resolution_smear_down))")
+        df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order", "Reverse(Argsort(L1Jet_pt_scale_corr_nominal_resolution_smear_nominal))")
+        df = df.Define("L1Jet_pt_scale_corr_up_resolution_smear_nominal_order", "Reverse(Argsort(L1Jet_pt_scale_corr_up_resolution_smear_nominal))")
+        df = df.Define("L1Jet_pt_scale_corr_down_resolution_smear_nominal_order", "Reverse(Argsort(L1Jet_pt_scale_corr_down_resolution_smear_nominal))")
+        df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_up_order", "Reverse(Argsort(L1Jet_pt_scale_corr_nominal_resolution_smear_up))")
+        df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_down_order", "Reverse(Argsort(L1Jet_pt_scale_corr_nominal_resolution_smear_down))")
 
         # Get the order difference wrt to the starting order
-        df = df.Define("L1Jet_pt_scale_corr_resolution_smear_order_shift", "get_order_shift(L1Jet_pt_order, L1Jet_pt_scale_corr_resolution_smear_order)")
+        df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order_shift", "get_order_shift(L1Jet_pt_order, L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order)")
 
         # Reorder wrt previous scale 
-        df = df.Define("L1Jet_eta_scale_corr", "Take(L1Jet_eta, L1Jet_pt_scale_corr_order)")
-        df = df.Define("L1Jet_phi_scale_corr", "Take(L1Jet_phi, L1Jet_pt_scale_corr_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr", "Take(L1Jet_pt_scale_corr, L1Jet_pt_scale_corr_order)")
+        df = df.Define("L1Jet_eta_scale_corr_nominal", "Take(L1Jet_eta, L1Jet_pt_scale_corr_nominal_order)")
+        df = df.Define("L1Jet_phi_scale_corr_nominal", "Take(L1Jet_phi, L1Jet_pt_scale_corr_nominal_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal", "Take(L1Jet_pt_scale_corr_nominal, L1Jet_pt_scale_corr_nominal_order)")
         # Up
         df = df.Define("L1Jet_eta_scale_corr_up", "Take(L1Jet_eta, L1Jet_pt_scale_corr_up_order)")
         df = df.Define("L1Jet_phi_scale_corr_up", "Take(L1Jet_phi, L1Jet_pt_scale_corr_up_order)")
@@ -515,32 +515,32 @@ class JetPtReshuffleScaleResolutionProducer():
         df = df.Redefine("L1Jet_pt_scale_corr_down", "Take(L1Jet_pt_scale_corr_down, L1Jet_pt_scale_corr_down_order)")
 
         # Reorder the jets according to the scale corrected pT
-        df = df.Define("L1Jet_eta_scale_corr_resolution_smear", "Take(L1Jet_eta, L1Jet_pt_scale_corr_resolution_smear_order)")
-        df = df.Define("L1Jet_phi_scale_corr_resolution_smear", "Take(L1Jet_phi, L1Jet_pt_scale_corr_resolution_smear_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_resolution_smear", "Take(L1Jet_pt_scale_corr_resolution_smear, L1Jet_pt_scale_corr_resolution_smear_order)")
+        df = df.Define("L1Jet_eta_scale_corr_nominal_resolution_smear_nominal", "Take(L1Jet_eta, L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order)")
+        df = df.Define("L1Jet_phi_scale_corr_nominal_resolution_smear_nominal", "Take(L1Jet_phi, L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", "Take(L1Jet_pt_scale_corr_nominal_resolution_smear_nominal, L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order)")
         # Scale up
-        df = df.Define("L1Jet_eta_scale_corr_up_resolution_smear", "Take(L1Jet_eta, L1Jet_pt_scale_corr_up_resolution_smear_order)")
-        df = df.Define("L1Jet_phi_scale_corr_up_resolution_smear", "Take(L1Jet_phi, L1Jet_pt_scale_corr_up_resolution_smear_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_up_resolution_smear", "Take(L1Jet_pt_scale_corr_up_resolution_smear, L1Jet_pt_scale_corr_up_resolution_smear_order)")
+        df = df.Define("L1Jet_eta_scale_corr_up_resolution_smear_nominal", "Take(L1Jet_eta, L1Jet_pt_scale_corr_up_resolution_smear_nominal_order)")
+        df = df.Define("L1Jet_phi_scale_corr_up_resolution_smear_nominal", "Take(L1Jet_phi, L1Jet_pt_scale_corr_up_resolution_smear_nominal_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_up_resolution_smear_nominal", "Take(L1Jet_pt_scale_corr_up_resolution_smear_nominal, L1Jet_pt_scale_corr_up_resolution_smear_nominal_order)")
         # Scale down
-        df = df.Define("L1Jet_eta_scale_corr_down_resolution_smear", "Take(L1Jet_eta, L1Jet_pt_scale_corr_down_resolution_smear_order)")
-        df = df.Define("L1Jet_phi_scale_corr_down_resolution_smear", "Take(L1Jet_phi, L1Jet_pt_scale_corr_down_resolution_smear_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_down_resolution_smear", "Take(L1Jet_pt_scale_corr_down_resolution_smear, L1Jet_pt_scale_corr_down_resolution_smear_order)")
+        df = df.Define("L1Jet_eta_scale_corr_down_resolution_smear_nominal", "Take(L1Jet_eta, L1Jet_pt_scale_corr_down_resolution_smear_nominal_order)")
+        df = df.Define("L1Jet_phi_scale_corr_down_resolution_smear_nominal", "Take(L1Jet_phi, L1Jet_pt_scale_corr_down_resolution_smear_nominal_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_down_resolution_smear_nominal", "Take(L1Jet_pt_scale_corr_down_resolution_smear_nominal, L1Jet_pt_scale_corr_down_resolution_smear_nominal_order)")
         # Smear up
-        df = df.Define("L1Jet_eta_scale_corr_resolution_smear_up", "Take(L1Jet_eta, L1Jet_pt_scale_corr_resolution_smear_up_order)")
-        df = df.Define("L1Jet_phi_scale_corr_resolution_smear_up", "Take(L1Jet_phi, L1Jet_pt_scale_corr_resolution_smear_up_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_resolution_smear_up", "Take(L1Jet_pt_scale_corr_resolution_smear_up, L1Jet_pt_scale_corr_resolution_smear_up_order)")
+        df = df.Define("L1Jet_eta_scale_corr_nominal_resolution_smear_up", "Take(L1Jet_eta, L1Jet_pt_scale_corr_nominal_resolution_smear_up_order)")
+        df = df.Define("L1Jet_phi_scale_corr_nominal_resolution_smear_up", "Take(L1Jet_phi, L1Jet_pt_scale_corr_nominal_resolution_smear_up_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal_resolution_smear_up", "Take(L1Jet_pt_scale_corr_nominal_resolution_smear_up, L1Jet_pt_scale_corr_nominal_resolution_smear_up_order)")
         # Smear Down
-        df = df.Define("L1Jet_eta_scale_corr_resolution_smear_down", "Take(L1Jet_eta, L1Jet_pt_scale_corr_resolution_smear_down_order)")
-        df = df.Define("L1Jet_phi_scale_corr_resolution_smear_down", "Take(L1Jet_phi, L1Jet_pt_scale_corr_resolution_smear_down_order)")
-        df = df.Redefine("L1Jet_pt_scale_corr_resolution_smear_down", "Take(L1Jet_pt_scale_corr_resolution_smear_down, L1Jet_pt_scale_corr_resolution_smear_down_order)")
+        df = df.Define("L1Jet_eta_scale_corr_nominal_resolution_smear_down", "Take(L1Jet_eta, L1Jet_pt_scale_corr_nominal_resolution_smear_down_order)")
+        df = df.Define("L1Jet_phi_scale_corr_nominal_resolution_smear_down", "Take(L1Jet_phi, L1Jet_pt_scale_corr_nominal_resolution_smear_down_order)")
+        df = df.Redefine("L1Jet_pt_scale_corr_nominal_resolution_smear_down", "Take(L1Jet_pt_scale_corr_nominal_resolution_smear_down, L1Jet_pt_scale_corr_nominal_resolution_smear_down_order)")
         
-        branches_base = ["L1Jet_pt_order", "L1Jet_eta_scale_corr", "L1Jet_phi_scale_corr", "L1Jet_pt_scale_corr", "L1Jet_eta_scale_corr_up", "L1Jet_phi_scale_corr_up", "L1Jet_pt_scale_corr_up","L1Jet_eta_scale_corr_down", "L1Jet_phi_scale_corr_down", "L1Jet_pt_scale_corr_down"]
-        branches_nominal = ["L1Jet_pt_scale_corr_resolution_smear_order", "L1Jet_pt_scale_corr_resolution_smear_order_shift", "L1Jet_pt_scale_corr_resolution_smear", "L1Jet_eta_scale_corr_resolution_smear", "L1Jet_phi_scale_corr_resolution_smear"]
-        branches_scale_up_smear_nominal = ["L1Jet_pt_scale_corr_up_resolution_smear", "L1Jet_eta_scale_corr_up_resolution_smear", "L1Jet_phi_scale_corr_up_resolution_smear"]
-        branches_scale_down_smear_nominal = ["L1Jet_pt_scale_corr_down_resolution_smear", "L1Jet_eta_scale_corr_down_resolution_smear", "L1Jet_phi_scale_corr_down_resolution_smear"]
-        branches_scale_nominal_smear_up = ["L1Jet_pt_scale_corr_resolution_smear_up", "L1Jet_eta_scale_corr_resolution_smear_up", "L1Jet_phi_scale_corr_resolution_smear_up"]
-        branches_scale_nominal_smear_down = ["L1Jet_pt_scale_corr_resolution_smear_down", "L1Jet_eta_scale_corr_resolution_smear_down", "L1Jet_phi_scale_corr_resolution_smear_down"]
+        branches_base = ["L1Jet_pt_order", "L1Jet_eta_scale_corr_nominal", "L1Jet_phi_scale_corr_nominal", "L1Jet_pt_scale_corr_nominal", "L1Jet_eta_scale_corr_up", "L1Jet_phi_scale_corr_up", "L1Jet_pt_scale_corr_up","L1Jet_eta_scale_corr_down", "L1Jet_phi_scale_corr_down", "L1Jet_pt_scale_corr_down"]
+        branches_nominal = ["L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order", "L1Jet_pt_scale_corr_nominal_resolution_smear_nominal_order_shift", "L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", "L1Jet_eta_scale_corr_nominal_resolution_smear_nominal", "L1Jet_phi_scale_corr_nominal_resolution_smear_nominal"]
+        branches_scale_up_smear_nominal = ["L1Jet_pt_scale_corr_up_resolution_smear_nominal", "L1Jet_eta_scale_corr_up_resolution_smear_nominal", "L1Jet_phi_scale_corr_up_resolution_smear_nominal"]
+        branches_scale_down_smear_nominal = ["L1Jet_pt_scale_corr_down_resolution_smear_nominal", "L1Jet_eta_scale_corr_down_resolution_smear_nominal", "L1Jet_phi_scale_corr_down_resolution_smear_nominal"]
+        branches_scale_nominal_smear_up = ["L1Jet_pt_scale_corr_nominal_resolution_smear_up", "L1Jet_eta_scale_corr_nominal_resolution_smear_up", "L1Jet_phi_scale_corr_nominal_resolution_smear_up"]
+        branches_scale_nominal_smear_down = ["L1Jet_pt_scale_corr_nominal_resolution_smear_down", "L1Jet_eta_scale_corr_nominal_resolution_smear_down", "L1Jet_phi_scale_corr_nominal_resolution_smear_down"]
 
         return df, (branches_base + branches_nominal + branches_scale_up_smear_nominal + branches_scale_down_smear_nominal + branches_scale_nominal_smear_up + branches_scale_nominal_smear_down)
 

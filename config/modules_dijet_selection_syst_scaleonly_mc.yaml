@@ -36,22 +36,15 @@ jet_pt_scale:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
 
-jet_pt_resolution:
-  name: JetPtResolutionAlt
-  path: modules.jet_pt_systematics_nano_v2
-  parameters:
-    runPeriod: self.dataset.runPeriod
-    isMC: self.dataset.process.isMC
-
 jet_pt_reshuffle:
-  name: JetPtReshuffleScaleResolution
+  name: JetPtReshuffleScale
   path: modules.jet_pt_systematics_nano_v2
   parameters:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
     
-inclusive_dijet_selection_scale_resolution:
-  name: InclusiveDijetSelectionScaleResolution
+inclusive_dijet_selection_scale:
+  name: InclusiveDijetSelectionScale
   path: modules.dijet_selection_2025
   parameters:
     year: self.config.year

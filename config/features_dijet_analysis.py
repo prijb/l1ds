@@ -1,0 +1,60 @@
+# Features are defined per category (outsources analysis selections to PrePlot)
+from analysis_tools import Feature
+from plotting_tools import Label
+
+features = [
+
+    ###########
+    # L1 JETS #
+    ###########
+    # Uncorrected quantities
+    Feature("mjj", "mjj",
+        binning=(1000, 0, 1000),
+        x_title=Label("mjj"),
+    ),
+    Feature("deta", "deta",
+        binning=(100, 0.0, 6.0),
+        x_title=Label("deta"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("dphi", "dphi",
+        binning=(34, 1.047, 3.2),
+        x_title=Label("dphi"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("pt", "pt",
+        binning=(200, 0, 1000),
+        x_title=Label("Dijet p_{T} [GeV]"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("lead_pt", "L1Jet_pt[0]",
+        binning=(200, 0, 1000),
+        x_title=Label("Leading L1Jet p_{T} [GeV]"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("sublead_pt", "L1Jet_pt[1]",
+        binning=(200, 0, 1000),
+        x_title=Label("Subleading L1Jet p_{T} [GeV]"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("lead_eta", "L1Jet_eta[0]",
+        binning=(64, -2.5, 2.5),
+        x_title=Label("Leading L1Jet #eta"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("sublead_eta", "L1Jet_eta[1]",
+        binning=(64, -2.5, 2.5),
+        x_title=Label("Subleading L1Jet #eta"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("lead_phi", "L1Jet_phi[0]",
+        binning=(64, -3.2, 3.2),
+        x_title=Label("Leading L1Jet #phi"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+    Feature("sublead_phi", "L1Jet_phi[1]",
+        binning=(64, -3.2, 3.2),
+        x_title=Label("Subleading L1Jet #phi"),
+        selection=("(mjj > 200) && (mjj < 700)"),
+    ),
+]
