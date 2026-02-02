@@ -3,8 +3,8 @@ from Corrections.LUM.puWeight import puWeightRDFProducer, puWeightDummyRDFProduc
 
 # pufile_data = "%s/../modules/dataParkingPileupHistogram.root" % os.environ['CMT_BASE']
 # pufile_data = "%s/../modules/parking_pu2018.root" % os.environ['CMT_BASE']
-pufile_data = "%s/../data/dataPileupHistogram-2024G_Golden-69200ub_norm.root" % os.environ['CMT_BASE']
-pufile_mc = "%s/../data/qcdPileupHistogram2024_norm.root" % os.environ['CMT_BASE']
+pufile_data = "%s/../data/pileup/dataPileupHistogram-2024G_Golden-69200ub_norm.root" % os.environ['CMT_BASE']
+pufile_mc = "%s/../data/pileup/qcdPileupHistogram2024_norm.root" % os.environ['CMT_BASE']
 puWeight_RDF = lambda: puWeightRDFProducer(
     pufile_mc, pufile_data, "ntrueint", "pileup", verbose=False, doSysVar=False)
 

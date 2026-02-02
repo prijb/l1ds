@@ -1,13 +1,10 @@
 drop .*
 keep nL1Jet
 keep L1Jet.*
-keep mjj
-keep mjj_scale_corr
-keep deta
-keep deta_scale_corr
-keep dphi
-keep dphi_scale_corr
-keep pt
+keep mjj.*
+keep deta.*
+keep dphi.*
+keep pt.*
 keep Pileup_nTrueInt
 keep xs_weight
 keep pileup_veto
