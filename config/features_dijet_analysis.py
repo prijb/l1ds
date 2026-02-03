@@ -57,4 +57,8 @@ features = [
         x_title=Label("Subleading L1Jet #phi"),
         selection=("(mjj > 200) && (mjj < 700)"),
     ),
+    Feature("ntrueint", "Pileup_nTrueInt",
+        binning=(100, 0, 100),
+        x_title=Label("nTrueInt")
+    ),
 ]
