@@ -67,7 +67,7 @@ class Config(qcd_config, cmt_config):
         self.tree_name = "Events"
         qcd_datasets = super(Config, self).add_qcd_datasets()
         datasets = [
-            Dataset("DataDijet",
+            Dataset("DataDijet25",
                 folder = "/eos/cms/store/cmst3/group/daql1scout/run3/ntuples/selection/dijet30/run392542/L1ScoutingSelection/dijetEt30Eta25_20250526/250526_160646/0000",
                 process = self.processes.get("data"),
                 file_pattern = "l1nano_selbx_run382650(.*).root",
@@ -79,7 +79,7 @@ class Config(qcd_config, cmt_config):
                 skip_logs = True,
                 runPeriod = "2025",
             ),
-            Dataset("DataZB",
+            Dataset("DataZB25",
                 folder = "/eos/cms/store/cmst3/group/daql1scout/run3/ntuples/zb/run392672/L1Scouting/ntuples-L1Scouting-Run2025C-v1-L1SCOUT-392672/251025_140947",
                 process = self.processes.get("data"),
                 prefix = "eoscms.cern.ch/",
@@ -250,20 +250,20 @@ class Config(qcd_config, cmt_config):
         # Weight for data
         #weights.total_events_weights = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        #weights.total_events_weights = ["puWeight"]
+        weights.total_events_weights = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.total_events_weights = ["qcd_weight"]
         # Weight for QCD (pileup)
-        weights.total_events_weights = ["qcd_weight", "puWeight"]
+        #weights.total_events_weights = ["qcd_weight", "puWeight"]
 
         # Weight for data
         #weights.base = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        #weights.base = ["puWeight"]
+        weights.base = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.base = ["qcd_weight"]
         # Weight for QCD (pileup)
-        weights.base = ["qcd_weight", "puWeight"]
+        #weights.base = ["qcd_weight", "puWeight"]
 
         for category in self.categories:
             weights[category.name] = weights.base
