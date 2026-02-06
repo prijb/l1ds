@@ -166,6 +166,9 @@ class Config(qcd_config, cmt_config):
             "sr_pt30_eta2p5": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 2.5) && (abs(L1Jet_eta[1]) < 2.5) && (dphi > 1.047) && (deta < 1.1)",
             "sr_pt30_eta0p9": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
             "sr_pt30_barrel_full_1": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.4)",
+            "sr_pt50_eta2p5": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 2.5) && (abs(L1Jet_eta[1]) < 2.5) && (dphi > 1.047) && (deta < 1.1)",
+            "sr_pt50_eta0p9": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
+            "sr_pt50_barrel_full_1": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.4)",
         }
         features_to_vary = ["mjj", "deta", "dphi", "lead_pt", "sublead_pt", "lead_eta", "sublead_eta", "lead_phi", "sublead_phi"]
         vars_to_vary = ["L1Jet_pt", "L1Jet_eta", "L1Jet_phi", "mjj", "deta", "dphi"]
@@ -200,6 +203,7 @@ class Config(qcd_config, cmt_config):
                     binning = feature.binning,
                     x_title = feature.aux['x_title'],
                     selection = feature_selection_syst,
+                    systematics = feature.systematics,
                 ) 
                 features_ext.append(feature_syst)
                 selections_ext.append(feature_selection_syst)
@@ -272,6 +276,7 @@ class Config(qcd_config, cmt_config):
 
     def add_systematics(self):
         systematics = [
+            Systematic("pu", "", up="Up", down="Down", alias="CMS_l1ds_pileup_2024")
         ]
         return ObjectCollection(systematics)
     

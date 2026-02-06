@@ -9,5 +9,4 @@ keep Pileup_nTrueInt
 keep xs_weight
 keep pileup_veto
 keep qcd_weight
-keep puWeight_weight
-keep puWeight
+keep puWeight.*

@@ -22,6 +22,7 @@ ntrueint_reweight:
   parameters:
     year: self.config.year
     isMC: self.dataset.process.isMC
+    process: self.dataset.process.name
     
 inclusive_dijet_selection:
   name: InclusiveDijetSelection

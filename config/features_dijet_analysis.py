@@ -59,6 +59,11 @@ features = [
     ),
     Feature("ntrueint", "Pileup_nTrueInt",
         binning=(100, 0, 100),
-        x_title=Label("nTrueInt")
+        x_title=Label("nTrueInt"),
+    ),
+    Feature("puWeight", "puWeight",
+        binning=(50, 0, 5),
+        x_title=Label("puWeight"),
+        systematics=["pu"],
     ),
 ]
