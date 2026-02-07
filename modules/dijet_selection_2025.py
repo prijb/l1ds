@@ -135,6 +135,20 @@ class InclusiveDijetSelectionZBProducer():
 def InclusiveDijetSelectionZB(*args, **kwargs):
     return lambda: InclusiveDijetSelectionZBProducer(*args, **kwargs)
 
+# Just filter out events with saturated towers
+class BasicDijetFilterProducer():
+    def __init__(self, *args, **kwargs):
+        self.year = kwargs.pop("year")
+
+    def run(self, df):
+        df = df.Filter("nL1Jet > 1")
+        df = df.Filter("Sum(L1Jet_pt == 1023.5)==0", "Saturated jet veto")
+
+        return df, []
+    
+def BasicDijetFilter(*args, **kwargs):
+    return lambda: BasicDijetFilterProducer(*args, **kwargs)
+
 ############## Using corrected and reordered jets ##########################
 # Obtains the corrected kinematics after JES
 # Dependency: JetPtReshuffleScale from modules.jet_pt_systematics_nano_v2
@@ -278,3 +292,4 @@ class InclusiveDijetSelectionScaleResolutionProducer():
 
 def InclusiveDijetSelectionScaleResolution(*args, **kwargs):
     return lambda: InclusiveDijetSelectionScaleResolutionProducer(*args, **kwargs)
+
