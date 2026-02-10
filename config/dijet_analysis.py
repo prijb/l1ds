@@ -169,6 +169,22 @@ class Config(qcd_config, cmt_config):
             "sr_pt50_eta2p5": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 2.5) && (abs(L1Jet_eta[1]) < 2.5) && (dphi > 1.047) && (deta < 1.1)",
             "sr_pt50_eta0p9": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
             "sr_pt50_barrel_full_1": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.4)",
+            "sr_eta0p9": "(abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
+            "sr_barrel_full_1": "(abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.4)",
+            "sr_pt30_w1": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.02175)",
+            "sr_pt30_w2": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.02175) && (deta < 0.10875)",
+            "sr_pt30_w3": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.10875) && (deta < 0.19575)",
+            "sr_pt30_w4": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.19575) && (deta < 0.28275)",
+            "sr_pt30_w5": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.28275) && (deta < 0.36975)",
+            "sr_pt30_w6": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.36975) && (deta < 0.45675)",
+            "sr_pt30_w7": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.45675) && (deta < 0.54375)",
+            "sr_pt30_w8": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.54375) && (deta < 0.63075)",
+            "sr_pt30_w9": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.63075) && (deta < 0.71775)",
+            "sr_pt30_w10": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.71775) && (deta < 0.80475)",
+            "sr_pt30_w11": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.80475) && (deta < 0.89175)",
+            "sr_pt30_w12": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.89175) && (deta < 0.97875)",
+            "sr_pt30_w13": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.97875) && (deta < 1.06575)",
+
         }
         features_to_vary = ["mjj", "deta", "dphi", "lead_pt", "sublead_pt", "lead_eta", "sublead_eta", "lead_phi", "sublead_phi"]
         vars_to_vary = ["L1Jet_pt", "L1Jet_eta", "L1Jet_phi", "mjj", "deta", "dphi"]
