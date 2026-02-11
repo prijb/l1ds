@@ -169,8 +169,6 @@ class Config(qcd_config, cmt_config):
             "sr_pt50_eta2p5": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 2.5) && (abs(L1Jet_eta[1]) < 2.5) && (dphi > 1.047) && (deta < 1.1)",
             "sr_pt50_eta0p9": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
             "sr_pt50_barrel_full_1": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.4)",
-            "sr_eta0p9": "(abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
-            "sr_barrel_full_1": "(abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.4)",
             "sr_pt30_w1": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.02175)",
             "sr_pt30_w2": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.02175) && (deta < 0.10875)",
             "sr_pt30_w3": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.10875) && (deta < 0.19575)",
@@ -184,9 +182,9 @@ class Config(qcd_config, cmt_config):
             "sr_pt30_w11": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.80475) && (deta < 0.89175)",
             "sr_pt30_w12": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.89175) && (deta < 0.97875)",
             "sr_pt30_w13": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.97875) && (deta < 1.06575)",
-
+            "pt30_eta0p9": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047)",
         }
-        features_to_vary = ["mjj", "deta", "dphi", "lead_pt", "sublead_pt", "lead_eta", "sublead_eta", "lead_phi", "sublead_phi"]
+        features_to_vary = ["mjj", "deta", "deta_full", "dphi", "dphi_full", "lead_pt", "sublead_pt", "lead_eta", "sublead_eta", "lead_phi", "sublead_phi"]
         vars_to_vary = ["L1Jet_pt", "L1Jet_eta", "L1Jet_phi", "mjj", "deta", "dphi"]
         systematic_variations = ["scale_corr_nominal_resolution_smear_nominal", "scale_corr_up_resolution_smear_nominal", "scale_corr_down_resolution_smear_nominal", "scale_corr_nominal_resolution_smear_up", "scale_corr_nominal_resolution_smear_down"]
 
@@ -259,6 +257,52 @@ class Config(qcd_config, cmt_config):
         
         #print(f"\nSelections added: {selections_ext}")
 
+        ## Add auxillary features manually without having to do all systematic variations in JECs (for utility purposes)
+        features_aux = [
+            # Denominator for sel eff
+            Feature("mjj_sr_eta0p9", "mjj",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
+            ),
+            Feature("mjj_sr_eta0p9_scale_corr_nominal_resolution_smear_nominal", "mjj_scale_corr_nominal_resolution_smear_nominal",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[0]) < 0.957) && (abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[1]) < 0.957) && (dphi_scale_corr_nominal_resolution_smear_nominal > 1.047) && (deta_scale_corr_nominal_resolution_smear_nominal < 0.8)",
+            ),
+            Feature("mjj_sr_barrel_full_1", "mjj",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
+            ),
+            Feature("mjj_sr_barrel_full_1_scale_corr_nominal_resolution_smear_nominal", "mjj_scale_corr_nominal_resolution_smear_nominal",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[0]) < 0.957) && (abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[1]) < 0.957) && (dphi_scale_corr_nominal_resolution_smear_nominal > 1.047) && (deta_scale_corr_nominal_resolution_smear_nominal < 0.4)",
+            ),
+            # Numerator for sel eff
+            Feature("mjj_sr_eta0p9_selstream", "mjj",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
+            ),
+            Feature("mjj_sr_eta0p9_selstream_scale_corr_nominal_resolution_smear_nominal", "mjj_scale_corr_nominal_resolution_smear_nominal",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(L1Jet_pt_scale_corr_nominal_resolution_smear_nominal[0] > 30) && (L1Jet_pt_scale_corr_nominal_resolution_smear_nominal[1] > 30) && (abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[0]) < 0.957) && (abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[1]) < 0.957) && (dphi_scale_corr_nominal_resolution_smear_nominal > 1.047) && (deta_scale_corr_nominal_resolution_smear_nominal < 0.8)",
+            ),
+            Feature("mjj_sr_barrel_full_1_selstream", "mjj",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
+            ),
+            Feature("mjj_sr_barrel_full_1_selstream_scale_corr_nominal_resolution_smear_nominal", "mjj_scale_corr_nominal_resolution_smear_nominal",
+                binning=(1000, 0, 1000),
+                x_title=Label("mjj"),
+                selection="(L1Jet_pt_scale_corr_nominal_resolution_smear_nominal[0] > 30) && (L1Jet_pt_scale_corr_nominal_resolution_smear_nominal[1] > 30) && (abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[0]) < 0.957) && (abs(L1Jet_eta_scale_corr_nominal_resolution_smear_nominal[1]) < 0.957) && (dphi_scale_corr_nominal_resolution_smear_nominal > 1.047) && (deta_scale_corr_nominal_resolution_smear_nominal < 0.4)",
+            ),
+        ]
+
         return ObjectCollection(features + features_ext)
 
     def add_weights(self):
@@ -270,20 +314,20 @@ class Config(qcd_config, cmt_config):
         # Weight for data
         #weights.total_events_weights = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        weights.total_events_weights = ["puWeight"]
+        #weights.total_events_weights = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.total_events_weights = ["qcd_weight"]
         # Weight for QCD (pileup)
-        #weights.total_events_weights = ["qcd_weight", "puWeight"]
+        weights.total_events_weights = ["qcd_weight", "puWeight"]
 
         # Weight for data
         #weights.base = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        weights.base = ["puWeight"]
+        #weights.base = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.base = ["qcd_weight"]
         # Weight for QCD (pileup)
-        #weights.base = ["qcd_weight", "puWeight"]
+        weights.base = ["qcd_weight", "puWeight"]
 
         for category in self.categories:
             weights[category.name] = weights.base
