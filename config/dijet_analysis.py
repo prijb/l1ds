@@ -170,18 +170,18 @@ class Config(qcd_config, cmt_config):
             "sr_pt50_eta0p9": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.8)",
             "sr_pt50_barrel_full_1": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.4)",
             "sr_pt30_w1": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 0.02175)",
-            "sr_pt30_w2": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.02175) && (deta < 0.10875)",
-            "sr_pt30_w3": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.10875) && (deta < 0.19575)",
-            "sr_pt30_w4": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.19575) && (deta < 0.28275)",
-            "sr_pt30_w5": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.28275) && (deta < 0.36975)",
-            "sr_pt30_w6": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.36975) && (deta < 0.45675)",
-            "sr_pt30_w7": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.45675) && (deta < 0.54375)",
-            "sr_pt30_w8": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.54375) && (deta < 0.63075)",
-            "sr_pt30_w9": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.63075) && (deta < 0.71775)",
-            "sr_pt30_w10": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.71775) && (deta < 0.80475)",
-            "sr_pt30_w11": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.80475) && (deta < 0.89175)",
-            "sr_pt30_w12": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.89175) && (deta < 0.97875)",
-            "sr_pt30_w13": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta > 0.97875) && (deta < 1.06575)",
+            "sr_pt30_w2": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.02175) && (deta < 0.10875)",
+            "sr_pt30_w3": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.10875) && (deta < 0.19575)",
+            "sr_pt30_w4": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.19575) && (deta < 0.28275)",
+            "sr_pt30_w5": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.28275) && (deta < 0.36975)",
+            "sr_pt30_w6": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.36975) && (deta < 0.45675)",
+            "sr_pt30_w7": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.45675) && (deta < 0.54375)",
+            "sr_pt30_w8": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.54375) && (deta < 0.63075)",
+            "sr_pt30_w9": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.63075) && (deta < 0.71775)",
+            "sr_pt30_w10": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.71775) && (deta < 0.80475)",
+            "sr_pt30_w11": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.80475) && (deta < 0.89175)",
+            "sr_pt30_w12": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.89175) && (deta < 0.97875)",
+            "sr_pt30_w13": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.97875) && (deta < 1.06575)",
             "pt30_eta0p9": "(L1Jet_pt[0] > 30) && (L1Jet_pt[1] > 30) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047)",
         }
         features_to_vary = ["mjj", "deta", "deta_full", "dphi", "dphi_full", "lead_pt", "sublead_pt", "lead_eta", "sublead_eta", "lead_phi", "sublead_phi"]
@@ -193,9 +193,9 @@ class Config(qcd_config, cmt_config):
         # Selections for sanity checking
         selections_ext = []
 
-        # Apply systematic variations to each new category
+        # Add categories to every variable 
         for category_key in categories.keys():
-            # Add the variables without systematic variations
+            # Add categories to all variables without systematic variations
             for feature in features:
                 #if feature.name in features_to_vary:
                 feature_name = feature.name
@@ -222,7 +222,7 @@ class Config(qcd_config, cmt_config):
                 features_ext.append(feature_syst)
                 selections_ext.append(feature_selection_syst)
 
-            # Add the variables with systematic variations
+            # Apply systematic variations to each new category for features to vary
             for systematic_variation in systematic_variations:
                 for feature in features:
                     if feature.name in features_to_vary:
@@ -303,7 +303,7 @@ class Config(qcd_config, cmt_config):
             ),
         ]
 
-        return ObjectCollection(features + features_ext)
+        return ObjectCollection(features + features_ext + features_aux)
 
     def add_weights(self):
         weights = DotDict()
@@ -314,20 +314,20 @@ class Config(qcd_config, cmt_config):
         # Weight for data
         #weights.total_events_weights = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        #weights.total_events_weights = ["puWeight"]
+        weights.total_events_weights = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.total_events_weights = ["qcd_weight"]
         # Weight for QCD (pileup)
-        weights.total_events_weights = ["qcd_weight", "puWeight"]
+        #weights.total_events_weights = ["qcd_weight", "puWeight"]
 
         # Weight for data
         #weights.base = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        #weights.base = ["puWeight"]
+        weights.base = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.base = ["qcd_weight"]
         # Weight for QCD (pileup)
-        weights.base = ["qcd_weight", "puWeight"]
+        #weights.base = ["qcd_weight", "puWeight"]
 
         for category in self.categories:
             weights[category.name] = weights.base
