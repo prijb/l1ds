@@ -103,10 +103,6 @@ response_features = [
         binning=(70, -3.5, 3.5),
         x_title=Label("MatchedJet_phi")
     ),
-    Feature("eta", "MatchedJet_eta",
-        binning=(100, -5.0, 5.0),
-        x_title=Label("MatchedJet_eta")
-    ),
     Feature("scale", "MatchedJet_ptScale",
         binning=(50, 0.0, 3.0),
         x_title=Label("MatchedJet_ptScale")
@@ -137,10 +133,6 @@ for i_bin in range(len(eta_edges) - 1):
         Feature(f"phi_{eta_cut_string}", f"MatchedJet_phi[{eta_cut}]",
             binning=(70, -3.5, 3.5),
             x_title=Label("MatchedJet_phi")
-        ),
-        Feature(f"eta_{eta_cut_string}", f"MatchedJet_eta[{eta_cut}]",
-            binning=(100, -5.0, 5.0),
-            x_title=Label("MatchedJet_eta")
         ),
         Feature(f"scale_{eta_cut_string}", f"MatchedJet_ptScale[{eta_cut}]",
             binning=(50, 0.0, 3.0),
