@@ -1,0 +1,1458 @@
+──────────────────────────── Corrections in file jet_2024_jerc_v2.json ─────────────────────────────
+CorrectionSet (schema v2)
+No description
+📂
+├── 📈 Summer24Prompt24_V2_MC_L1FastJet_AK4PFPuppi (v2)
+│   L1FastJet for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 1, Formula: 2
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetA (real)                                                                                  │
+│   │ area of the jet                                                                              │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ Rho (real)                                                                                   │
+│   │ energy density rho (as measure of PU)                                                        │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_L2Relative_AK4PFPuppi (v2)
+│   L2Relative for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 83, Formula: 129
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPhi (real)                                                                                │
+│   │ azimuthal angle of the jet                                                                   │
+│   │ Range: [-3.1416, 3.1416), overflow ok                                                        │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_L3Absolute_AK4PFPuppi (v2)
+│   L3Absolute for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 1, Formula: 2
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_L2L3Residual_AK4PFPuppi (v2)
+│   L2L3Residual for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 1, Formula: 2
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_FlavorQCD_AK4PFPuppi (v2)
+│   Regrouped_FlavorQCD for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_RelativeBal_AK4PFPuppi (v2)
+│   Regrouped_RelativeBal for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_HF_AK4PFPuppi (v2)
+│   Regrouped_HF for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_BBEC1_AK4PFPuppi (v2)
+│   Regrouped_BBEC1 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_EC2_AK4PFPuppi (v2)
+│   Regrouped_EC2 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_Absolute_AK4PFPuppi (v2)
+│   Regrouped_Absolute for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_Absolute_2024_AK4PFPuppi (v2)
+│   Regrouped_Absolute_2024 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_HF_2024_AK4PFPuppi (v2)
+│   Regrouped_HF_2024 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_EC2_2024_AK4PFPuppi (v2)
+│   Regrouped_EC2_2024 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_RelativeSample_2024_AK4PFPuppi (v2)
+│   Regrouped_RelativeSample_2024 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_BBEC1_2024_AK4PFPuppi (v2)
+│   Regrouped_BBEC1_2024 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Regrouped_Total_AK4PFPuppi (v2)
+│   Regrouped_Total for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_AbsoluteStat_AK4PFPuppi (v2)
+│   AbsoluteStat for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_AbsoluteScale_AK4PFPuppi (v2)
+│   AbsoluteScale for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_AbsoluteSample_AK4PFPuppi (v2)
+│   AbsoluteSample for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_AbsoluteFlavMap_AK4PFPuppi (v2)
+│   AbsoluteFlavMap for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_AbsoluteMPFBias_AK4PFPuppi (v2)
+│   AbsoluteMPFBias for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Fragmentation_AK4PFPuppi (v2)
+│   Fragmentation for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SinglePionECAL_AK4PFPuppi (v2)
+│   SinglePionECAL for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SinglePionHCAL_AK4PFPuppi (v2)
+│   SinglePionHCAL for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_FlavorQCD_AK4PFPuppi (v2)
+│   FlavorQCD for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_TimePtEta_AK4PFPuppi (v2)
+│   TimePtEta for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeJEREC1_AK4PFPuppi (v2)
+│   RelativeJEREC1 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeJEREC2_AK4PFPuppi (v2)
+│   RelativeJEREC2 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeJERHF_AK4PFPuppi (v2)
+│   RelativeJERHF for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativePtBB_AK4PFPuppi (v2)
+│   RelativePtBB for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativePtEC1_AK4PFPuppi (v2)
+│   RelativePtEC1 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativePtEC2_AK4PFPuppi (v2)
+│   RelativePtEC2 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativePtHF_AK4PFPuppi (v2)
+│   RelativePtHF for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeBal_AK4PFPuppi (v2)
+│   RelativeBal for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeSample_AK4PFPuppi (v2)
+│   RelativeSample for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeFSR_AK4PFPuppi (v2)
+│   RelativeFSR for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeStatFSR_AK4PFPuppi (v2)
+│   RelativeStatFSR for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeStatEC_AK4PFPuppi (v2)
+│   RelativeStatEC for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_RelativeStatHF_AK4PFPuppi (v2)
+│   RelativeStatHF for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpDataMC_AK4PFPuppi (v2)
+│   PileUpDataMC for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpPtRef_AK4PFPuppi (v2)
+│   PileUpPtRef for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpPtBB_AK4PFPuppi (v2)
+│   PileUpPtBB for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpPtEC1_AK4PFPuppi (v2)
+│   PileUpPtEC1 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpPtEC2_AK4PFPuppi (v2)
+│   PileUpPtEC2 for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpPtHF_AK4PFPuppi (v2)
+│   PileUpPtHF for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpMuZero_AK4PFPuppi (v2)
+│   PileUpMuZero for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_PileUpEnvelope_AK4PFPuppi (v2)
+│   PileUpEnvelope for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SubTotalPileUp_AK4PFPuppi (v2)
+│   SubTotalPileUp for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SubTotalRelative_AK4PFPuppi (v2)
+│   SubTotalRelative for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SubTotalPt_AK4PFPuppi (v2)
+│   SubTotalPt for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SubTotalScale_AK4PFPuppi (v2)
+│   SubTotalScale for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SubTotalAbsolute_AK4PFPuppi (v2)
+│   SubTotalAbsolute for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_SubTotalMC_AK4PFPuppi (v2)
+│   SubTotalMC for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_Total_AK4PFPuppi (v2)
+│   Total for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_TotalNoFlavor_AK4PFPuppi (v2)
+│   TotalNoFlavor for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_TotalNoTime_AK4PFPuppi (v2)
+│   TotalNoTime for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_TotalNoFlavorNoTime_AK4PFPuppi (v2)
+│   TotalNoFlavorNoTime for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_FlavorZJet_AK4PFPuppi (v2)
+│   FlavorZJet for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_FlavorPhotonJet_AK4PFPuppi (v2)
+│   FlavorPhotonJet for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_FlavorPureGluon_AK4PFPuppi (v2)
+│   FlavorPureGluon for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_FlavorPureQuark_AK4PFPuppi (v2)
+│   FlavorPureQuark for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_FlavorPureCharm_AK4PFPuppi (v2)
+│   FlavorPureCharm for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_FlavorPureBottom_AK4PFPuppi (v2)
+│   FlavorPureBottom for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_CorrelationGroupMPFInSitu_AK4PFPuppi (v2)
+│   CorrelationGroupMPFInSitu for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_CorrelationGroupIntercalibration_AK4PFPuppi (v2)
+│   CorrelationGroupIntercalibration for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_CorrelationGroupbJES_AK4PFPuppi (v2)
+│   CorrelationGroupbJES for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_CorrelationGroupFlavor_AK4PFPuppi (v2)
+│   CorrelationGroupFlavor for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_MC_CorrelationGroupUncorrelated_AK4PFPuppi (v2)
+│   CorrelationGroupUncorrelated for AK4PFPuppi jets, created from Summer24Prompt24_V2_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 41, FormulaRef: 1960, Formula: 1
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.4, 5.4), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_DATA_L1FastJet_AK4PFPuppi (v2)
+│   L1FastJet for AK4PFPuppi jets, created from Summer24Prompt24_RunCnib1_V2_DATA using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 1, Formula: 2
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetA (real)                                                                                  │
+│   │ area of the jet                                                                              │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ Rho (real)                                                                                   │
+│   │ energy density rho (as measure of PU)                                                        │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_DATA_L2Relative_AK4PFPuppi (v2)
+│   L2Relative for AK4PFPuppi jets, created from Summer24Prompt24_RunCnib1_V2_DATA using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 83, Formula: 129
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPhi (real)                                                                                │
+│   │ azimuthal angle of the jet                                                                   │
+│   │ Range: [-3.1416, 3.1416), overflow ok                                                        │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_DATA_L3Absolute_AK4PFPuppi (v2)
+│   L3Absolute for AK4PFPuppi jets, created from Summer24Prompt24_RunCnib1_V2_DATA using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 1, Formula: 2
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer24Prompt24_V2_DATA_L2L3Residual_AK4PFPuppi (v2)
+│   L2L3Residual for AK4PFPuppi jets, created from 
+│   {Summer24Prompt24_RunCnib1_V2,Summer24Prompt24_RunDnib1_V2,Summer24Prompt24_RunEnib1_V2,Summer24
+│   Prompt24_RunFnib1_V2,Summer24Prompt24_RunFnib2_V2,Summer24Prompt24_RunFnib3_V2,Summer24Prompt24_
+│   RunGnib1_V2,Summer24Prompt24_RunGnib2_V2,Summer24Prompt24_RunHnib1_V2,Summer24Prompt24_RunInib1_
+│   V2}_DATA using https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 11, Formula: 821
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ run (real)                                                                                   │
+│   │ run number                                                                                   │
+│   │ Range: [379412.0, 387121.0)                                                                  │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+├── 📈 Summer23BPixPrompt23_RunD_JRV1_MC_PtResolution_AK4PFPuppi (v2)
+│   PtResolution for AK4PFPuppi jets, created from Summer23BPixPrompt23_RunD_JRV1_MC using 
+│   https://gitlab.cern.ch/cms-jetmet/jerc2json
+│   Node counts: Binning: 39, Formula: 305
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetEta (real)                                                                                │
+│   │ pseudorapidity of the jet                                                                    │
+│   │ Range: [-5.191, 5.191), overflow ok                                                          │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ JetPt (real)                                                                                 │
+│   │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+│   │ applied)                                                                                     │
+│   │ Range: [-inf, inf), overflow ok                                                              │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+│   │ Rho (real)                                                                                   │
+│   │ energy density rho (as measure of PU)                                                        │
+│   │ Range: [0.0, 52.05), overflow ok                                                             │
+│   ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+│   ╭──── ◀ output ─────╮
+│   │ correction (real) │
+│   │ No description    │
+│   ╰───────────────────╯
+└── 📈 Summer23BPixPrompt23_RunD_JRV1_MC_ScaleFactor_AK4PFPuppi (v2)
+    ScaleFactor for AK4PFPuppi jets, created from Summer23BPixPrompt23_RunD_JRV1_MC using 
+    https://gitlab.cern.ch/cms-jetmet/jerc2json
+    Node counts: Binning: 43, Category: 1470
+    ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+    │ JetEta (real)                                                                                │
+    │ pseudorapidity of the jet                                                                    │
+    │ Range: [-5.191, 5.191), overflow ok                                                          │
+    ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+    │ JetPt (real)                                                                                 │
+    │ pT of the jet before specific correction (for JER and uncertainties: after all corrections   │
+    │ applied)                                                                                     │
+    │ Range: [10.0, 5373.0), overflow ok                                                           │
+    ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭────────────────────────────────────────── ▶ input ───────────────────────────────────────────╮
+    │ systematic (string)                                                                          │
+    │ systematics: nom, up, down                                                                   │
+    │ Values: down, nom, up                                                                        │
+    ╰──────────────────────────────────────────────────────────────────────────────────────────────╯
+    ╭──── ◀ output ─────╮
+    │ correction (real) │
+    │ No description    │
+    ╰───────────────────╯

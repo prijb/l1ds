@@ -12,15 +12,15 @@ jet_pt_resolution:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
 
-jet_pt_reshuffle:
-  name: JetPtReshuffleScaleResolution
+jet_redefinition:
+  name: PostJESJERRedefinition
   path: modules.jet_pt_systematics_nano_v2
   parameters:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
 
 muonjet_skim:
-  name: MuonJetScaleResolution
+  name: MuonJet
   path: modules.jet_pt_systematics_skim
   parameters:
     runPeriod: self.dataset.runPeriod

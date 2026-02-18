@@ -98,7 +98,7 @@ class Config(cmt_config):
         return ObjectCollection(datasets)
 
     def add_features(self):
-        from config.features_dijet_2025 import features
+        from config.features_dijet_syst import features
         return ObjectCollection(features)
 
     def add_weights(self):

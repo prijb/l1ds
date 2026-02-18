@@ -547,3 +547,5 @@ class JetPtReshuffleScaleResolutionProducer():
 
 def JetPtReshuffleScaleResolution(**kwargs):
     return lambda: JetPtReshuffleScaleResolutionProducer(**kwargs)
+
+##################### Offline systematics ##########################

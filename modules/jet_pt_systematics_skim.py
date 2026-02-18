@@ -3,6 +3,40 @@ import os
 from analysis_tools.utils import import_root
 ROOT = import_root()
 
+# Redefinition of jets after applying JES
+class PostJESRedefinitionProducer():
+    def __init__(self, *args, **kwargs):
+        self.isMC = kwargs.pop("isMC")
+    
+    def run(self, df):
+        # Redefine the L1Jet quantities
+        df = df.Redefine("L1Jet_pt", "L1Jet_pt_scale_corr")
+        df = df.Redefine("L1Jet_eta", "L1Jet_eta_scale_corr")
+        df = df.Redefine("L1Jet_phi", "L1Jet_phi_scale_corr")
+
+        return df, []
+
+def PostJESRedefinition(*args, **kwargs):
+    return lambda: PostJESRedefinitionProducer(*args, **kwargs)
+
+
+# Redefinition of jets after applying JES and JER
+class PostJESJERRedefinitionProducer():
+    def __init__(self, *args, **kwargs):
+        self.isMC = kwargs.pop("isMC")
+    
+    def run(self, df):
+        # Redefine the L1Jet quantities
+        df = df.Redefine("L1Jet_pt", "L1Jet_pt_scale_corr_resolution_smear")
+        df = df.Redefine("L1Jet_eta", "L1Jet_eta_scale_corr_resolution_smear")
+        df = df.Redefine("L1Jet_phi", "L1Jet_phi_scale_corr_resolution_smear")
+
+        return df, []
+
+def PostJESJERRedefinition(*args, **kwargs):
+    return lambda: PostJESJERRedefinitionProducer(*args, **kwargs)
+
+# MuonJet method of extracting L1 response
 class MuonJetProducer():
     def __init__(self, *args, **kwargs):
         # Preprocess function call
@@ -199,7 +233,6 @@ class MuonJetProducer():
     
 def MuonJet(**kwargs):
     return lambda: MuonJetProducer(**kwargs)
-
    
 # After applying just JES
 class MuonJetScaleProducer():

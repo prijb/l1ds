@@ -1,0 +1,6 @@
+muonjet_skim:
+  name: MuonJet
+  path: modules.jet_pt_systematics_skim
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
