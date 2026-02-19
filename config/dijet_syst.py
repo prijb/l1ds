@@ -6,9 +6,10 @@ from plotting_tools import Label
 from collections import OrderedDict
 
 from cmt.config.base_config import Config as cmt_config
+from config.qcd_datasets_new import Config as qcd_config
 from cmt.base_tasks.base import Task
 
-class Config(cmt_config):
+class Config(qcd_config, cmt_config):
     def add_categories(self, **kwargs):
         categories = [
             Category("base", "base", selection="nL1Jet > -1"),
@@ -17,6 +18,7 @@ class Config(cmt_config):
         return ObjectCollection(categories)
 
     def add_processes(self):
+        qcd_processes = super(Config, self).add_qcd_processes()
         processes = [
             Process("wjet", Label("WJet"), color=(0, 0, 255), isData=False),
             Process("dy", Label("DY"), color=(0, 0, 255), isData=False),
@@ -27,6 +29,7 @@ class Config(cmt_config):
             "default": [
                 "wjet",
                 "dy",
+                "qcd",
                 "data"
             ],
             "data": [
@@ -41,12 +44,13 @@ class Config(cmt_config):
         process_training_names = {}
 
         # adding reweighed processes
-        processes = ObjectCollection(processes)
+        processes = ObjectCollection(processes) + qcd_processes
 
         return ObjectCollection(processes), process_group_names, process_training_names
 
     def add_datasets(self):
         self.tree_name = "Events"
+        qcd_datasets = super(Config, self).add_qcd_datasets()
         datasets = [
             Dataset("Muon0_2024G",
                 folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/Muon0/v2/250921_144145",
@@ -93,9 +97,21 @@ class Config(cmt_config):
                 skip_logs = True,
                 runPeriod = "2024",
             ),
+            # Change runPeriod to smear it to a given year
+            Dataset("DY_2024_V14",
+                folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/DYto2Mu-4Jets_Bin-MLL-50_TuneCP5_13p6TeV_madgraphMLM-pythia8/Summer24NanoV14WithL1/250920_123443",
+                process = self.processes.get("dy"),
+                prefix = "gfe02.grid.hep.ph.ic.ac.uk",
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2024",
+            ),
         ]
 
-        return ObjectCollection(datasets)
+        return ObjectCollection(datasets) + qcd_datasets
 
     def add_features(self):
         from config.features_dijet_syst import features
@@ -105,9 +121,9 @@ class Config(cmt_config):
         weights = DotDict()
         weights.default = "1"
 
-        weights.total_events_weights = ["1"]
+        weights.total_events_weights = ["qcd_weight", "puWeight"]
 
-        weights.base = ["1"]
+        weights.base = ["qcd_weight", "puWeight"]
 
         for category in self.categories:
             weights[category.name] = weights.base

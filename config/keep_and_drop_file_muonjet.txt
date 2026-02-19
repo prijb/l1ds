@@ -1,2 +1,4 @@
 drop .*
 keep MatchedJet.*
+keep qcd_weight
+keep puWeight.*

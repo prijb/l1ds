@@ -146,4 +146,27 @@ for i_bin in range(len(eta_edges) - 1):
 
     response_features += response_features_i
 
-features = base_features + response_features
+response_features_lastbin = [
+    Feature(f"pt_neg3p0topos3p0", f"MatchedJet_pt[(MatchedJet_eta >= -3.0) && (MatchedJet_eta < 3.0)]",
+        binning=(500, 0, 500),
+        x_title=Label("MatchedJet_pt")
+    ),
+    Feature(f"eta_neg3p0topos3p0", f"MatchedJet_eta[(MatchedJet_eta >= -3.0) && (MatchedJet_eta < 3.0)]",
+        binning=(100, -5.0, 5.0),
+        x_title=Label("MatchedJet_eta")
+    ),
+    Feature(f"phi_neg3p0topos3p0", f"MatchedJet_phi[(MatchedJet_eta >= -3.0) && (MatchedJet_eta < 3.0)]",
+        binning=(70, -3.5, 3.5),
+        x_title=Label("MatchedJet_phi")
+    ),
+    Feature(f"scale_neg3p0topos3p0", f"MatchedJet_ptScale[(MatchedJet_eta >= -3.0) && (MatchedJet_eta < 3.0)]",
+        binning=(50, 0.0, 3.0),
+        x_title=Label("MatchedJet_ptScale")
+    ),
+    Feature(f"diff_neg3p0topos3p0", f"MatchedJet_ptDiff[(MatchedJet_eta >= -3.0) && (MatchedJet_eta < 3.0)]",
+        binning=(100, -100, 100),
+        x_title=Label("MatchedJet_ptDiff")
+    ),
+]
+
+features = base_features + response_features + response_features_lastbin
