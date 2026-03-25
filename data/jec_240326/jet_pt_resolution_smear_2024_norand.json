@@ -1,0 +1,43 @@
+{
+  "schema_version": 2,
+  "description": "L1 JER",
+  "corrections": [
+    {
+      "name": "L1JERSmear",
+      "description": "L1 Jet Data/MC resolution smearing",
+      "version": 1,
+      "inputs": [
+        {
+          "name": "JER",
+          "type": "real",
+          "description": "Reference jet energy resolution"
+        },
+        {
+          "name": "JERSF",
+          "type": "real",
+          "description": "Jet energy resolution scale factor"
+        },
+        {
+          "name": "RandSmear",
+          "type": "real",
+          "description": "Random multiplicative factor from Normal dist"
+        }
+      ],
+      "output": {
+        "name": "smear",
+        "type": "real",
+        "description": "Smear factor"
+      },
+      "data": {
+        "nodetype": "formula",
+        "expression": "1 + sqrt(max(x*x - 1, 0)) * y * z",
+        "parser": "TFormula",
+        "variables": [
+          "JERSF",
+          "JER",
+          "RandSmear"
+        ]
+      }
+    }
+  ]
+}

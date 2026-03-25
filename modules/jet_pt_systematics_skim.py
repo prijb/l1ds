@@ -10,9 +10,9 @@ class PostJESRedefinitionProducer():
     
     def run(self, df):
         # Redefine the L1Jet quantities
-        df = df.Redefine("L1Jet_pt", "L1Jet_pt_scale_corr")
-        df = df.Redefine("L1Jet_eta", "L1Jet_eta_scale_corr")
-        df = df.Redefine("L1Jet_phi", "L1Jet_phi_scale_corr")
+        df = df.Redefine("L1Jet_pt", "L1Jet_pt_scale_corr_nominal")
+        df = df.Redefine("L1Jet_eta", "L1Jet_eta_scale_corr_nominal")
+        df = df.Redefine("L1Jet_phi", "L1Jet_phi_scale_corr_nominal")
 
         return df, []
 
@@ -27,9 +27,9 @@ class PostJESJERRedefinitionProducer():
     
     def run(self, df):
         # Redefine the L1Jet quantities
-        df = df.Redefine("L1Jet_pt", "L1Jet_pt_scale_corr_resolution_smear")
-        df = df.Redefine("L1Jet_eta", "L1Jet_eta_scale_corr_resolution_smear")
-        df = df.Redefine("L1Jet_phi", "L1Jet_phi_scale_corr_resolution_smear")
+        df = df.Redefine("L1Jet_pt", "L1Jet_pt_scale_corr_nominal_resolution_smear_nominal")
+        df = df.Redefine("L1Jet_eta", "L1Jet_eta_scale_corr_nominal_resolution_smear_nominal")
+        df = df.Redefine("L1Jet_phi", "L1Jet_phi_scale_corr_nominal_resolution_smear_nominal")
 
         return df, []
 

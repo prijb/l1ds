@@ -95,7 +95,7 @@ class Config(qcd_config, cmt_config):
                 xs = 1.0,
                 nr_incl = 1,
                 skip_logs = True,
-                runPeriod = "2024",
+                runPeriod = "2025",
             ),
             # Change runPeriod to smear it to a given year
             Dataset("DY_2024_V14",
@@ -107,7 +107,7 @@ class Config(qcd_config, cmt_config):
                 xs = 1.0,
                 nr_incl = 1,
                 skip_logs = True,
-                runPeriod = "2024",
+                runPeriod = "2025",
             ),
         ]
 

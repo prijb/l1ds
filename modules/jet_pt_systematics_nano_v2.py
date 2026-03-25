@@ -18,18 +18,18 @@ class JetPtScaleProducer():
 
         if self.isMC:
             print("\nSample: MC")
-            filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_mc.json"
+            filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_scale_mc.json"
         else:
             print("\nSample: Data")
             if "2024" in self.runPeriod:
                 print("Year: 2024")
-                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_data_2024.json" 
+                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_scale_data_2024.json" 
             elif "2025" in self.runPeriod:
                 print("Year: 2025")
-                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_data_2025.json"
+                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_scale_data_2025.json"
             else:
                 print("No year specified, falling back to 2025")
-                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_scale_data_2025.json"
+                filename = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_scale_data_2025.json"
 
 
         print(f"Loading scale corrections from {filename}") 
@@ -225,25 +225,25 @@ class JetPtResolutionAltProducer():
         self.runPeriod = kwargs.pop("runPeriod")
         self.isMC = kwargs.pop("isMC")
 
-        filename_ref = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_mc.json"
+        filename_ref = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_resolution_mc.json"
         filename_sf = "data/dummy_sf.json"
         filename_smear = "data/dummy_smear.json"
 
         if "2024" in self.runPeriod:
             print("Year: 2024")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2024.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2024_norand.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_resolution_sf_2024.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_resolution_smear_2024_norand.json"
         elif "2025" in self.runPeriod:
             print("Year: 2025")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_resolution_sf_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_resolution_smear_2025_norand.json"
         else:
             print("No year specified, falling back to 2025")
-            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_sf_2025.json"
-            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_290126/jet_pt_resolution_smear_2025_norand.json"
+            filename_sf = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_resolution_sf_2025.json"
+            filename_smear = "/vols/cms/pb4918/L1Scouting/Feb26/l1ds/data/jec_240326/jet_pt_resolution_smear_2025_norand.json"
 
         if self.isMC:
-            print(f"Loading resolution corrections for year: {self.runPeriod}")
+            print(f"Loading resolution corrections for year: {self.runPeriod} from {filename_smear}")
             print(f"Generating smearing random factor in script")
             
             if "/libCorrectionsWrapper.so" not in ROOT.gSystem.GetLibraries():

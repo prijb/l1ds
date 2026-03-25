@@ -9,8 +9,9 @@ import gzip
 # Uproot version
 import uproot
 import hist
-
 from argparse import ArgumentParser
+
+# Example: python3 scripts/roottojson_ptresolution_correctionlib.py --input_res data/resolution/prod_240326/resolution_WJet24NanoV15_fit.root --input_sf data/resolution/prod_240326/resolution_Muon24G_WJet24NanoV15_ratio_fit.root --output_res data/jec_240326/jet_pt_resolution_mc.json --output_sf data/jec_240326/jet_pt_resolution_sf_2024.json --output_smear data/jec_240326/jet_pt_resolution_smear_2024_norand.json --skiprand
 parser = ArgumentParser()
 parser.add_argument("--input_res", type=str, required=True, help="Input ROOT file for resolution")
 parser.add_argument("--input_sf", type=str, required=True, help="Input ROOT file for smearing SF")

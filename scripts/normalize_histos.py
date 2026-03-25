@@ -4,7 +4,7 @@ import ROOT
 
 cwd = os.getcwd()
 
-parser = argparse.ArgumentParser(description="Take a given file with a histogram and return a copy with the hist normalized to unit are")
+parser = argparse.ArgumentParser(description="Take a given file with a histogram and return a copy with the hist normalized to unit area")
 parser.add_argument("--infile", type=str, required=True, help="Path to the input file")
 parser.add_argument("--histname", type=str, required=True, help="Histogram name")
 args = parser.parse_args()
