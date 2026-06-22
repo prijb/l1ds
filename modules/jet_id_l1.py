@@ -1,0 +1,1 @@
+# Test variables for jet id (like iso)

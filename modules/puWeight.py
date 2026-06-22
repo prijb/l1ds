@@ -16,7 +16,7 @@ def puWeightRDF(**kwargs):
         pufile_mc = "%s/../data/pileup/qcdPileupHistogram2024_norm.root" % os.environ['CMT_BASE']
     elif "ztoqq" in process:
         print(f"Process {process} registered as Z' signal")
-        pufile_mc = "%s/../data/pileup/signal_ztoqq_250_norm.root" % os.environ['CMT_BASE']
+        pufile_mc = "%s/../data/pileup/signal_ztoqq_250_summer24_norm.root" % os.environ['CMT_BASE']
     else:
         print("Unknown process, falling back to QCD")
 

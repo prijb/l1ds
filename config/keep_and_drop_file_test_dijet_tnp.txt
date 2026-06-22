@@ -1,0 +1,5 @@
+drop .*
+keep L1Dijet_dphi
+keep passSelection
+keep probe.*
+keep tag.*

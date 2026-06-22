@@ -16,16 +16,20 @@ qcd_reweight:
     year: self.config.year
     isMC: self.dataset.process.isMC
 
-ntrueint_reweight:
-  name: puWeightRDF
-  path: modules.puWeight
-  parameters:
-    year: self.config.year
-    isMC: self.dataset.process.isMC
-    process: self.dataset.process.name
-    
 inclusive_dijet_selection:
   name: InclusiveDijetSelection
+  path: modules.dijet_selection_2025
+  parameters:
+    year: self.config.year
+  
+l1_match_to_reco:
+  name: L1MatchToReco
+  path: modules.dijet_selection_2025
+  parameters:
+    year: self.config.year
+
+inclusive_dijet_selection_reco:
+  name: InclusiveDijetSelectionReco
   path: modules.dijet_selection_2025
   parameters:
     year: self.config.year

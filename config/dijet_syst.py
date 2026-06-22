@@ -23,6 +23,7 @@ class Config(qcd_config, cmt_config):
             Process("wjet", Label("WJet"), color=(0, 0, 255), isData=False),
             Process("dy", Label("DY"), color=(0, 0, 255), isData=False),
             Process("data", Label("Data"), color=(0, 0, 0), isData=True),
+            Process("hltscouting", Label("HLT Scouting"), color=(0, 0, 0), isData=True),
         ]
 
         process_group_names = {
@@ -52,6 +53,64 @@ class Config(qcd_config, cmt_config):
         self.tree_name = "Events"
         qcd_datasets = super(Config, self).add_qcd_datasets()
         datasets = [
+            # ZeroBias data (L1 jets have pT > 30)
+            Dataset("ZeroBias_2025C_Default",
+                dataset = "/ZeroBias/Run2025C-PromptReco-v1/NANOAOD",
+                process = self.processes.get("data"),
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2025",
+            ),
+            # ZeroBias data (L1 jets have pT < 30 too)
+            Dataset("ZeroBias_2025C_Private",
+                folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/ZeroBias/2025C-v1-NanoV15WithL1/260430_031909",
+                process = self.processes.get("data"),
+                prefix = "gfe02.grid.hep.ph.ic.ac.uk",
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2025",
+            ),
+            # ScoutingPFMonitor (L1 jets have pT > 30)
+            Dataset("ScoutingPFMonitor_2025C_Default",
+                dataset = "/ScoutingPFMonitor/Run2025C-PromptReco-v1/NANOAOD",
+                process = self.processes.get("hltscouting"),
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2025",
+                triggerType="DST_PFScouting_JetHT"
+            ),
+            # JetMET (L1 jets have pT > 30)
+            Dataset("JetMET0_2025C_Default",
+                dataset = "/JetMET0/Run2025C-PromptReco-v1/NANOAOD",
+                process = self.processes.get("data"),
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2025",
+                triggerType="HLT_PFJet60"
+            ),
+            Dataset("JetMET1_2025C_Default",
+                dataset = "/JetMET1/Run2025C-PromptReco-v1/NANOAOD",
+                process = self.processes.get("data"),
+                tags = ["ul"],
+                check_empty = False,
+                xs = 1.0,
+                nr_incl = 1,
+                skip_logs = True,
+                runPeriod = "2025",
+                triggerType="HLT_PFJet60"
+            ),
             Dataset("Muon0_2024G",
                 folder = "/pnfs/hep.ph.ic.ac.uk/data/cms/store/user/ppradeep/L1Scouting/Muon0/v2/250921_144145",
                 process = self.processes.get("data"),
@@ -114,7 +173,7 @@ class Config(qcd_config, cmt_config):
         return ObjectCollection(datasets) + qcd_datasets
 
     def add_features(self):
-        from config.features_dijet_syst import features
+        from config.features_dijet_syst_tnp import features
         return ObjectCollection(features)
 
     def add_weights(self):

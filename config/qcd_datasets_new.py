@@ -19,6 +19,7 @@ class Config():
             Process("qcd_600to800", Label("QCD (600-800)"), color=(255, 153, 0), isData=False, parent_process="qcd"),
             Process("qcd_800to1000", Label("QCD (800-1000)"), color=(255, 153, 0), isData=False, parent_process="qcd"),
             Process("qcd_1000to1500", Label("QCD (1000-1500)"), color=(255, 153, 0), isData=False, parent_process="qcd"),
+            Process("qcd_15to7000", Label("QCD (15-7000)"), color=(255, 153, 0), isData=False, parent_process="qcd"),
         ]
 
         return ObjectCollection(processes)
@@ -129,6 +130,13 @@ class Config():
             Dataset("qcd_800to1000",
                 folder="/eos/cms/store/group/phys_exotica/l1ds/samples/QCD_PT_Run3Summer24_NANOAODv15/QCD_Bin-PT-800to1000_TuneCP5_13p6TeV_pythia8/251011_015853",
                 process=self.processes.get("qcd_800to1000"),
+                runPeriod="2024",
+                prefix="eoscms.cern.ch/",
+                xs=30.62,
+                nr_incl=79503600),
+            Dataset("qcd_15to7000",
+                folder="/eos/cms/store/group/phys_exotica/l1ds/samples/QCD_PT_Run3Summer24_NANOAODv15/QCD_Bin-PT-15to7000_TuneCP5_13p6TeV_pythia8/260408_043613/0000",
+                process=self.processes.get("qcd_15to7000"),
                 runPeriod="2024",
                 prefix="eoscms.cern.ch/",
                 xs=30.62,
