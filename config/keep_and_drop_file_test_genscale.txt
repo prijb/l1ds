@@ -1,0 +1,6 @@
+drop .*
+keep nGenJet
+keep GenJet.*
+keep nJet
+keep Jet.*
+keep L1Jet.*

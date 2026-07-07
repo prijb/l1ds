@@ -1,13 +1,20 @@
 recojet_pt_scale:
   name: RecoJetPtScale
-  path: modules.jet_pt_systematics_new
+  path: modules.jec_application
   parameters:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
 
 recojet_pt_resolution:
   name: RecoJetPtResolution
-  path: modules.jet_pt_systematics_new
+  path: modules.jec_application
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+
+jetvetomap:
+  name: JetVetoMap
+  path: modules.jec_application
   parameters:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC

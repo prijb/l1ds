@@ -8,9 +8,15 @@ class EventWeightProducer():
         #self.lumi_pb = kwargs.pop("lumi_pb", 0.446)
         self.xs = kwargs.pop("xs", 1.0)
         self.nr_incl = kwargs.pop("nr_incl", 1)
+        self.isMC = kwargs.pop("isMC")
 
     def run(self, df):
-        df = df.Define("xs_weight", f"{self.xs} / {self.nr_incl}")
+        if self.isMC:
+            print(f"\nSetting xs_weight for sample xs {self.xs:.3e} pb and {self.nr_incl} events")
+            df = df.Define("xs_weight", f"{self.xs} / {self.nr_incl}")
+        else:
+            print("\nSetting xs_weight to 1.0 for data")
+            df = df.Define("xs_weight", "1.0")
         return df, ["xs_weight"]
     
 def EventWeight(*args, **kwargs):
@@ -20,6 +26,9 @@ def EventWeight(*args, **kwargs):
 # Pileup veto
 class PileupVetoProducer():
     def __init__(self, *args, **kwargs):
+        
+        self.isMC = kwargs.pop("isMC")
+
         ROOT.gInterpreter.Declare("""
             using Vfloat = ROOT::RVec<float>;
             // Vetoes event if any of the pileup pT hats are greater than the gen pT hat
@@ -36,7 +45,12 @@ class PileupVetoProducer():
         )
 
     def run(self, df):
-        df = df.Define("pileup_veto", "vetoPileupPtHat(genPtHat, PileupPtHats)")
+        if self.isMC:
+            print("\nEvaluating pileup veto")
+            df = df.Define("pileup_veto", "vetoPileupPtHat(genPtHat, PileupPtHats)")
+        else:
+            print("\nPileup veto set to false for data")
+            df = df.Define("pileup_veto", "false")
         return df, ["pileup_veto"]
     
 def PileupVeto(*args, **kwargs):
@@ -46,6 +60,9 @@ def PileupVeto(*args, **kwargs):
 # Pileup veto (nanoaod)
 class PileupVetoNanoProducer():
     def __init__(self, *args, **kwargs):
+        
+        self.isMC = kwargs.pop("isMC")
+
         ROOT.gInterpreter.Declare("""
             using Vfloat = ROOT::RVec<float>;
             // Vetoes event if any of the pileup pT hats are greater than the gen pT hat
@@ -62,7 +79,12 @@ class PileupVetoNanoProducer():
         )
 
     def run(self, df):
-        df = df.Define("pileup_veto", "vetoPileupPtHat(GenPtHat_hardPtHat, PileupPtHat_puPtHats)")
+        if self.isMC:
+            print("\nEvaluating pileup veto")
+            df = df.Define("pileup_veto", "vetoPileupPtHat(GenPtHat_hardPtHat, PileupPtHat_puPtHats)")
+        else:
+            print("\nPileup veto set to false for data")
+            df = df.Define("pileup_veto", "false")
         return df, ["pileup_veto"]
     
 def PileupVetoNano(*args, **kwargs):
@@ -70,6 +92,9 @@ def PileupVetoNano(*args, **kwargs):
 
 class EventPtHatsProducer():
     def __init__(self, *args, **kwargs):
+
+        self.isMC = kwargs.pop("isMC")
+
         ROOT.gInterpreter.Declare(
             """
             using Vfloat = ROOT::RVec<float>;
@@ -86,8 +111,13 @@ class EventPtHatsProducer():
         """)
 
     def run(self, df):
-        df = df.Define("EventPtHats", "getEventPtHats(GenPtHat_hardPtHat, PileupPtHat_puPtHats)")
-        return df, ["EventPtHats"]
+        if self.MC:
+            print("\nMaking combined vector of pileup pT hats and hard scatter pT hat")
+            df = df.Define("EventPtHats", "getEventPtHats(GenPtHat_hardPtHat, PileupPtHat_puPtHats)")
+            return df, ["EventPtHats"]
+        else:
+            print("\nSkipping pT hat creation for data")
+            return df, []
     
 def EventPtHats(*args, **kwargs):
     return lambda: EventPtHatsProducer(*args, **kwargs)

@@ -95,8 +95,8 @@ hep.cms.label(data=False, llabel='Private Work', ax=ax, rlabel=f"{label}")
 plt.savefig(f"{outdir}/phi_eta.png")
 
 ## Eta cut
-jets = jets[(np.abs(jets.eta) > 2.5) & (np.abs(jets.eta) < 3.0)]
-#jets = jets[np.abs(jets.eta) < 2.5]
+#jets = jets[(np.abs(jets.eta) > 2.5) & (np.abs(jets.eta) < 3.0)]
+jets = jets[np.abs(jets.eta) < 2.5]
 #jets = jets[~ak.is_none(jets)]
 
 h_jet_pt_orig = hist.Hist(hist.axis.Regular(100, 0, 100, name="pt", label="Jet pT [NanoAOD]"), storage="weight")

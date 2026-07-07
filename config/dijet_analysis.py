@@ -234,7 +234,7 @@ class Config(qcd_config, cmt_config):
             "sr_pt50_w13": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta >= 0.97875) && (deta < 1.06575)",
             "sr_pt50_wfull": "(L1Jet_pt[0] > 50) && (L1Jet_pt[1] > 50) && (abs(L1Jet_eta[0]) < 0.957) && (abs(L1Jet_eta[1]) < 0.957) && (dphi > 1.047) && (deta < 1.06575)",
         }
-        features_to_vary = ["mjj", "deta", "deta_full", "dphi", "dphi_full", "lead_pt", "sublead_pt", "lead_eta", "sublead_eta", "lead_phi", "sublead_phi"]
+        features_to_vary = ["mjj", "deta", "deta_full", "dphi", "dphi_full", "lead_pt", "lead_pt_full", "sublead_pt", "sublead_pt_full", "lead_eta", "lead_eta_full", "sublead_eta", "sublead_eta_full", "lead_phi", "lead_phi_full", "sublead_phi", "sublead_phi_full"]
         vars_to_vary = ["L1Jet_pt", "L1Jet_eta", "L1Jet_phi", "mjj", "deta", "dphi"]
         systematic_variations = ["scale_corr_nominal_resolution_smear_nominal", "scale_corr_up_resolution_smear_nominal", "scale_corr_down_resolution_smear_nominal", "scale_corr_nominal_resolution_smear_up", "scale_corr_nominal_resolution_smear_down"]
 
@@ -382,18 +382,18 @@ class Config(qcd_config, cmt_config):
         # Note: For ztoqq, we need to use pileup weights w/o QCD stitching
 
         # Weight for data
-        #weights.total_events_weights = ["1"]
+        weights.total_events_weights = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        weights.total_events_weights = ["puWeight"]
+        #weights.total_events_weights = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.total_events_weights = ["qcd_weight"]
         # Weight for QCD (pileup)
         #weights.total_events_weights = ["qcd_weight", "puWeight"]
 
         # Weight for data
-        #weights.base = ["1"]
+        weights.base = ["1"]
         # Weight for pileup (w/o QCD stitching)
-        weights.base = ["puWeight"]
+        #weights.base = ["puWeight"]
         # Weight for QCD (w/o pileup)
         #weights.base = ["qcd_weight"]
         # Weight for QCD (pileup)

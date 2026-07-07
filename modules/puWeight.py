@@ -21,7 +21,8 @@ def puWeightRDF(**kwargs):
         print("Unknown process, falling back to QCD")
 
     #pufile_data = "%s/../data/pileup/dataPileupHistogram-2024G_Golden-69200ub_norm.root" % os.environ['CMT_BASE']
-    pufile_data = "%s/../data/pileup/dataPileupHistogram-2024G_Golden_norm.root" % os.environ['CMT_BASE']
+    #pufile_data = "%s/../data/pileup/dataPileupHistogram-2024G_Golden_norm.root" % os.environ['CMT_BASE']
+    pufile_data = "%s/../data/pileup/dataPileupHistogram-2025pp_Golden_norm.root" % os.environ['CMT_BASE']
     puWeight_RDF = lambda: puWeightRDFProducer(
         pufile_mc, pufile_data, "ntrueint", "pileup", verbose=False, doSysVar=True)
 

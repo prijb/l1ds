@@ -1,0 +1,6 @@
+l1jet_pt_scale:
+  name: JetPtScaleTnP
+  path: modules.jec_application
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC

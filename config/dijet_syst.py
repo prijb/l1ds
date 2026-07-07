@@ -173,16 +173,21 @@ class Config(qcd_config, cmt_config):
         return ObjectCollection(datasets) + qcd_datasets
 
     def add_features(self):
-        from config.features_dijet_syst_tnp import features
+        from config.features_dijet_syst_genscale import features_genscale
+        #from config.features_dijet_syst_tnp import features_tnp
+        from config.features_dijet_syst_tnp_syst import features_tnp
+        features = features_genscale + features_tnp
         return ObjectCollection(features)
 
     def add_weights(self):
         weights = DotDict()
         weights.default = "1"
 
-        weights.total_events_weights = ["qcd_weight", "puWeight"]
+        #weights.total_events_weights = ["qcd_weight", "puWeight"]
+        weights.total_events_weights = ["puWeight"]
 
-        weights.base = ["qcd_weight", "puWeight"]
+        #weights.base = ["qcd_weight", "puWeight"]
+        weights.base = ["puWeight"]
 
         for category in self.categories:
             weights[category.name] = weights.base
@@ -191,6 +196,8 @@ class Config(qcd_config, cmt_config):
 
     def add_systematics(self):
         systematics = [
+            Systematic("offlinejes", "_OfflineJES", up="Up", down="Down"),
+            Systematic("offlinejer", "_OfflineJER", up="Up", down="Down"),
         ]
         return ObjectCollection(systematics)
     

@@ -1,3 +1,17 @@
+l1jet_pt_scale:
+  name: JetPtScaleTnP
+  path: modules.jec_application
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+
+l1jet_pt_scale_redefine:
+  name: JetPtScaleRedefine
+  path: modules.jec_application
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+
 recojet_pt_scale:
   name: RecoJetPtScale
   path: modules.jec_application

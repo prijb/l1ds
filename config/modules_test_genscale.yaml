@@ -19,10 +19,8 @@ jetvetomap:
     runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
 
-dijet_tnp:
-  name: L1RecoDijetTnP
+genscale:
+  name: L1GenResponse
   path: modules.jec_derivation
   parameters:
-    runPeriod: self.dataset.runPeriod
     isMC: self.dataset.process.isMC
-    triggerType: self.dataset.get_aux('triggerType')

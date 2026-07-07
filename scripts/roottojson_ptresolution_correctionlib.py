@@ -30,11 +30,16 @@ output_file_smear = args.output_smear
 f_res = uproot.open(input_file_res)
 f_sf = uproot.open(input_file_sf)
 
-histo_res = f_res["h_resolution_nominal"].to_hist()
+#histo_res = f_res["h_resolution_nominal"].to_hist()
+histo_res = f_res["h_resolution_mc"].to_hist()
 
-histo_sf_nominal = f_sf["h_resolution_nominal"].to_hist()
-histo_sf_up = f_sf["h_resolution_up"].to_hist()
-histo_sf_down = f_sf["h_resolution_down"].to_hist()
+#histo_sf_nominal = f_sf["h_resolution_nominal"].to_hist()
+#histo_sf_up = f_sf["h_resolution_up"].to_hist()
+#histo_sf_down = f_sf["h_resolution_down"].to_hist()
+histo_sf_nominal = f_sf["h_scale_nominal"].to_hist()
+histo_sf_up = f_sf["h_scale_up"].to_hist()
+histo_sf_down = f_sf["h_scale_down"].to_hist()
+
 
 # Rename the axes
 histo_res.axes.name = ("Jet_eta", "Jet_pt")
@@ -160,11 +165,13 @@ cset_smear_corr = cs.CorrectionSet(
     description = "L1 JER",
     corrections = [smear_corr],
 )
+"""
 if hasattr(cset_smear_corr, "model_dump_json"):
     json_text_smear = cset_smear_corr.model_dump_json(exclude_unset=True, indent=2)
 else:
     json_text_smear = cset_smear_corr.json(exclude_unset=True, indent=2)
 with open(output_file_smear, "w") as fout:
     fout.write(json_text_smear)
+"""
 
 
