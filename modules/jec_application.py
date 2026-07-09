@@ -6,9 +6,10 @@ from analysis_tools.utils import import_root
 
 ROOT = import_root()
 
-#import correctionlib
-#correctionlib.register_pyroot_binding()
+import correctionlib
+correctionlib.register_pyroot_binding()
 
+"""
 # Lazy correctionlib fix (need to be more robust)
 # Fix is for CMSSW_14_1_0_pre4 -> Try without fix for CMSSW_15_0_10
 from pathlib import Path
@@ -23,6 +24,7 @@ ret = gbl.gSystem.Load(str(lib))
 print("libcorrectionlib load return:", ret)
 gbl.gInterpreter.AddIncludePath(str(inc))
 gbl.gROOT.ProcessLine('#include "correction.h"')
+"""
 
 
 ############### Offline corrections ###############
@@ -38,16 +40,16 @@ class RecoJetPtScaleProducer():
 
         # Select the JEC file (MC is corrected to 2024 by default)
         if (self.runPeriod == "2024") or self.isMC:
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/offline_jec/jet_2024_jerc_v3.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/offline_jec/jet_2024_jerc_v3.json"
             jerctag = "Summer24Prompt24_V3"
             jercunctag = "Summer24Prompt24_V3_MC"
         elif self.runPeriod == "2025":
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/offline_jec/jet_2025_jerc_v3.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/offline_jec/jet_2025_jerc_v3.json"
             jerctag = "Winter25Prompt25_V3"
             jercunctag = "Winter25Prompt25_V3_MC"
         else:
             print("No year specified, falling back to 2025")
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/offline_jec/jet_2025_jerc_v3.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/offline_jec/jet_2025_jerc_v3.json"
             jerctag = "Winter25Prompt25_V3"
             jercunctag = "Winter25Prompt25_V3_MC"
 
@@ -225,18 +227,18 @@ class RecoJetPtResolutionProducer():
         jerctag = None
 
         # Smearing tool filename 
-        filename_smear = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/offline_jec/jer_smear.json"
+        filename_smear = f"{os.environ['CMT_BASE']}/../data/offline_jec/jer_smear.json"
 
         # Select the JEC file
         if (self.runPeriod == "2024") or self.isMC:
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/offline_jec/jet_2024_jerc_v3.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/offline_jec/jet_2024_jerc_v3.json"
             jerctag = "Summer24Prompt24_JRV1"
         elif self.runPeriod == "2025":
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/offline_jec/jet_2025_jerc_v3.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/offline_jec/jet_2025_jerc_v3.json"
             jerctag = "Summer24Prompt25_JRV1"
         else:
             print("No year specified, falling back to 2025")
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/offline_jec/jet_2025_jerc_v3.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/offline_jec/jet_2025_jerc_v3.json"
             jerctag = "Summer24Prompt25_JRV1"
 
         # Load if MC 
@@ -472,7 +474,9 @@ class JetPtResolutionTnPProducer():
 
         filename_ref = "data/dummy.json"
         filename_sf = "data/dummy.json"
-        filename_smear = f"{os.environ['CMT_BASE']}/../data/jec_300626/jer_smear.json"
+        #filename_smear = f"{os.environ['CMT_BASE']}/../data/jec_300626/jer_smear.json"
+        # Version where original pT is used to ensure stochastic behaviour is common for up/down (uses get_jet_pt_smear_origpt as function)
+        filename_smear = f"{os.environ['CMT_BASE']}/../data/jec_300626/jer_smear_stochasticonly.json"
 
         ## Hardcode to smear to 2025 data using 2024 MC as reference
         filename_ref = f"{os.environ['CMT_BASE']}/../data/jec_300626/jet_pt_resolution_tnp_mc_2024.json"
@@ -531,25 +535,54 @@ class JetPtResolutionTnPProducer():
 
                         return jet_pt_smear;
                     }
+
+                    // Smear the jets (use original pT for fixed stochastic nature)
+                    Vfloat get_jet_pt_smear_origpt(Vfloat Jet_pt_orig, Vfloat Jet_pt, Vfloat Jet_eta, float Rho, int EventID, std::string syst){
+                        Vfloat jet_pt_smear;
+
+                        for (size_t i = 0; i < Jet_pt.size(); i++){
+                            // Gen pT hardcoded to -1.0 to make smearing always stochastic
+                            float resolution_ref = corr_ref.eval({Jet_eta[i], Jet_pt[i]});
+                            float resolution_sf = corr_sf.eval({Jet_eta[i], Jet_pt[i], syst});
+
+                            float smear = corr_smear.eval({Jet_pt[i], Jet_eta[i], Jet_pt_orig[i], Rho, EventID, resolution_ref, resolution_sf});
+
+                            float smeared_pt = Jet_pt[i] * smear;
+                            if (smeared_pt < 1.e-2) smeared_pt = 1.e-2;
+                            jet_pt_smear.push_back(smeared_pt);
+                        }
+
+                        return jet_pt_smear;
+                    }
                 """)
 
     def run(self, df):
         if self.isMC:
+            ## Initial version
             # Nominal scale
-            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", 'get_jet_pt_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
-            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_up", 'get_jet_pt_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "systup")')
-            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_down", 'get_jet_pt_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "systdown")')
+            #df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", 'get_jet_pt_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
+            #df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_up", 'get_jet_pt_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "systup")')
+            #df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_down", 'get_jet_pt_smear(L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "systdown")')
             # Scale up
-            df = df.Define("L1Jet_pt_scale_corr_up_resolution_smear_nominal", 'get_jet_pt_smear(L1Jet_pt_scale_corr_up, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
+            #df = df.Define("L1Jet_pt_scale_corr_up_resolution_smear_nominal", 'get_jet_pt_smear(L1Jet_pt_scale_corr_up, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
             # Scale down
-            df = df.Define("L1Jet_pt_scale_corr_down_resolution_smear_nominal", 'get_jet_pt_smear(L1Jet_pt_scale_corr_down, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
+            #df = df.Define("L1Jet_pt_scale_corr_down_resolution_smear_nominal", 'get_jet_pt_smear(L1Jet_pt_scale_corr_down, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
+
+            ## Use original pT for stochastic consistency
+            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", 'get_jet_pt_smear_origpt(L1Jet_pt, L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
+            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_up", 'get_jet_pt_smear_origpt(L1Jet_pt, L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "systup")')
+            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_down", 'get_jet_pt_smear_origpt(L1Jet_pt, L1Jet_pt_scale_corr_nominal, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "systdown")')
+            # Scale up
+            df = df.Define("L1Jet_pt_scale_corr_up_resolution_smear_nominal", 'get_jet_pt_smear_origpt(L1Jet_pt, L1Jet_pt_scale_corr_up, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
+            # Scale down
+            df = df.Define("L1Jet_pt_scale_corr_down_resolution_smear_nominal", 'get_jet_pt_smear_origpt(L1Jet_pt, L1Jet_pt_scale_corr_down, L1Jet_eta, Rho_fixedGridRhoFastjetAll, event, "sf")')
         else:
             print("\nRunning on data, no smearing applied to L1 jets to Reco")
             df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_nominal", "L1Jet_pt_scale_corr_nominal")
-            df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_up", "L1Jet_pt_scale_corr_nominal")
-            df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_down", "L1Jet_pt_scale_corr_nominal")
-            df.Define("L1Jet_pt_scale_corr_up_resolution_smear_nominal", "L1Jet_pt_scale_corr_up")
-            df.Define("L1Jet_pt_scale_corr_down_resolution_smear_nominal", "L1Jet_pt_scale_corr_down")
+            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_up", "L1Jet_pt_scale_corr_nominal")
+            df = df.Define("L1Jet_pt_scale_corr_nominal_resolution_smear_down", "L1Jet_pt_scale_corr_nominal")
+            df = df.Define("L1Jet_pt_scale_corr_up_resolution_smear_nominal", "L1Jet_pt_scale_corr_up")
+            df = df.Define("L1Jet_pt_scale_corr_down_resolution_smear_nominal", "L1Jet_pt_scale_corr_down")
 
         output_branches = [
             "L1Jet_pt_scale_corr_nominal_resolution_smear_nominal",
@@ -592,14 +625,14 @@ class JetVetoMapProducer():
         jvmtag = None 
 
         if (self.runPeriod == "2024") or self.isMC:
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/jvm/jetvetomaps_2024.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/jvm/jetvetomaps_2024.json"
             jvmtag = "Summer24Prompt24_RunBCDEFGHI_V1"
         elif self.runPeriod == "2025":
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/jvm/jetvetomaps_2025.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/jvm/jetvetomaps_2025.json"
             jvmtag = "Winter25Prompt25_RunCDEFG_V1"
         else:
             print("No year specified, falling back to 2025")
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/jvm/jetvetomaps_2025.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/jvm/jetvetomaps_2025.json"
             jvmtag = "Winter25Prompt25_RunCDEFG_V1"
 
         print(f"Loading jet veto maps from {filename} with tag {jvmtag}")
@@ -659,14 +692,14 @@ class L1JetVetoMapProducer():
         jvmtag = None 
 
         if (self.runPeriod == "2024") or self.isMC:
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/jvm/jetvetomaps_2024.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/jvm/jetvetomaps_2024.json"
             jvmtag = "Summer24Prompt24_RunBCDEFGHI_V1"
         elif self.runPeriod == "2025":
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/jvm/jetvetomaps_2025.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/jvm/jetvetomaps_2025.json"
             jvmtag = "Winter25Prompt25_RunCDEFG_V1"
         else:
             print("No year specified, falling back to 2025")
-            filename = "/vols/cms/pb4918/L1Scouting/Apr26/l1ds/data/jvm/jetvetomaps_2025.json"
+            filename = f"{os.environ['CMT_BASE']}/../data/jvm/jetvetomaps_2025.json"
             jvmtag = "Winter25Prompt25_RunCDEFG_V1"
 
         print(f"Loading jet veto maps from {filename} with tag {jvmtag}")
@@ -705,11 +738,9 @@ class L1JetVetoMapProducer():
 
     def run(self, df):
         df = df.Define("L1Jet_veto", "get_jet_veto(L1Jet_eta, L1Jet_phi)")
-
         df = df.Define("jvm_event_veto_l1", "Sum(L1Jet_veto) > 0")
-        df = df.Define("jvm_event_veto", "(jvm_event_veto_offline)||(jvm_event_veto_l1)")
 
         return df, ["L1Jet_veto", "jvm_event_veto_l1"]
 
-def L1JetVetoMap(**kwargs):
-    return lambda: L1JetVetoMapProducer(**kwargs)
+def L1JetVetoMap(*args, **kwargs):
+    return lambda: L1JetVetoMapProducer(*args, **kwargs)

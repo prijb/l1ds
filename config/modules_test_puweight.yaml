@@ -1,6 +1,6 @@
 ntrueint_reweight:
   name: puWeightRDF
-  path: modules.puWeight
+  path: modules.puWeight_manual
   parameters:
     year: self.config.year
     isMC: self.dataset.process.isMC

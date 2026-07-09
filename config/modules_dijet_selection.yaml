@@ -1,0 +1,67 @@
+# MC weighting (QCD only)
+xs_weight:
+  name: EventWeight
+  path: modules.xsweight
+  parameters:
+    xs: self.dataset.xs
+    nr_incl: self.dataset.get_aux('nr_incl', 1)
+    isMC: self.dataset.process.isMC
+
+pileup_veto:
+  name: PileupVetoNano
+  path: modules.xsweight
+  parameters:
+    year: self.config.year
+    isMC: self.dataset.process.isMC
+  
+qcd_reweight:
+  name: QCDWeight
+  path: L1DS.Modules.QCDWeightCalc
+  parameters:
+    year: self.config.year
+    isMC: self.dataset.process.isMC
+
+# Pileup reweighting (MC only)
+ntrueint_reweight:
+  name: puWeightRDF
+  path: modules.puWeight_manual
+  parameters:
+    year: self.config.year
+    isMC: self.dataset.process.isMC
+    process: self.dataset.process.name
+
+# L1 JECs
+l1jet_pt_scale:
+  name: JetPtScaleTnP
+  path: modules.jec_application
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+
+l1jet_pt_resolution:
+  name: JetPtResolutionTnP
+  path: modules.jec_application
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+
+# Jet veto maps defined for L1 jets
+jetvetomap:
+  name: L1JetVetoMap
+  path: modules.jec_application
+  parameters:
+    runPeriod: self.dataset.runPeriod
+    isMC: self.dataset.process.isMC
+
+# Analysis selections
+inclusive_dijet_preselection:
+  name: InclusiveDijetPreSelection
+  path: modules.dijet_selection
+  parameters:
+    year: self.config.year
+
+inclusive_dijet_postjec:
+  name: InclusiveDijetPostJEC
+  path: modules.dijet_selection
+  parameters:
+    year: self.config.year

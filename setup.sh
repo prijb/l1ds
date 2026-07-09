@@ -9,7 +9,7 @@ action() {
     cd nanoaod_base_analysis
     #local this_file="$( [ ! -z "$ZSH_VERSION" ] && echo "${(%):-%x}" || echo "${BASH_SOURCE[0]}" )"
     #local this_dir="$( cd "$( dirname "$this_file" )" && pwd )"
-    export CMT_BASE="/vols/cms/pb4918/L1Scouting/Apr26/l1ds/nanoaod_base_analysis"
+    export CMT_BASE="/vols/cms/pb4918/L1Scouting/Jul26/l1ds/nanoaod_base_analysis"
     #export CMT_BASE="/home/hep/jleonhol/l1dsbbtt/nanoaod_base_analysis"
     if [[ "$CMT_BASE" == "DUMMY" ]]; then
         echo "Need to change the path stored in CMT_BASE to the present folder"
@@ -80,7 +80,7 @@ action() {
     [ -z "$CMT_TMP_DIR" ] && export CMT_TMP_DIR="$CMT_DATA/tmp"
     [ -z "$CMT_CMSSW_BASE" ] && export CMT_CMSSW_BASE="$CMT_DATA/cmssw"
     [ -z "$CMT_SCRAM_ARCH" ] && export CMT_SCRAM_ARCH="el9_amd64_gcc12"
-    [ -z "$CMT_CMSSW_VERSION" ] && export CMT_CMSSW_VERSION="CMSSW_14_1_0_pre4"
+    [ -z "$CMT_CMSSW_VERSION" ] && export CMT_CMSSW_VERSION="CMSSW_14_2_2"
     [ -z "$CMT_PYTHON_VERSION" ] && export CMT_PYTHON_VERSION="3"
 
     # specific eos dirs

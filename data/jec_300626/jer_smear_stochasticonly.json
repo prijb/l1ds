@@ -1,0 +1,73 @@
+{
+    "schema_version": 2,
+    "corrections": [
+      {
+        "name": "JERSmear",
+        "description": "Jet smearing tool",
+        "version": 1,
+        "inputs": [
+          {
+            "name": "JetPt",
+            "type": "real"
+          },
+          {
+            "name": "JetEta",
+            "type": "real"
+          },
+          {
+            "name": "JetPtOrig",
+            "type": "real",
+            "description": "original jet pt before smearing"
+          },
+          {
+            "name": "Rho",
+            "type": "real",
+            "description": "entropy source"
+          },
+          {
+            "name": "EventID",
+            "type": "int",
+            "description": "entropy source"
+          },
+          {
+            "name": "JER",
+            "type": "real",
+            "description": "Jet energy resolution"
+          },
+          {
+            "name": "JERSF",
+            "type": "real",
+            "description": "Jet energy resolution scale factor"
+          }
+        ],
+        "output": {
+          "name": "smear",
+          "type": "real"
+        },
+        "data": {
+          "nodetype": "transform",
+          "input": "JetPtOrig",
+          "rule": {
+            "nodetype": "hashprng",
+            "inputs": [
+              "JetPtOrig",
+              "JetEta",
+              "Rho",
+              "EventID"
+            ],
+            "distribution": "normal"
+          },
+          "content": {
+            "nodetype": "formula",
+            "expression": "1 + sqrt(max(x*x - 1, 0)) * y * z",
+            "parser": "TFormula",
+            "variables": [
+              "JERSF",
+              "JER",
+              "JetPtOrig"
+            ]
+          }
+        }
+      }
+    ]
+  }

@@ -3,5 +3,5 @@ keep nJet
 keep Jet.*
 keep nL1Jet
 keep L1Jet.*
-keep nTrueInt
-keep puWeight
+keep Pileup_nTrueInt
+keep puWeight.*
